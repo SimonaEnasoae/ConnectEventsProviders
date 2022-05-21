@@ -25,6 +25,7 @@ const auth = createSlice({
     setAuthState(state, { payload }: PayloadAction<boolean>) {
       state.isAuthenticated = payload;
       localStorage.setItem("isLoggedIn", String(payload));
+      state.token = null;
     },
   },
 });

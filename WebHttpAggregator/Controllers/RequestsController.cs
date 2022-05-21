@@ -64,8 +64,8 @@ namespace WebBff.Controllers
                 var eventObj = await _eventService.GetEventByIdAsync(res.EventId);
                 res.EventModel = eventObj;
 
-                //var provider = await _providerService.GetProviderByIdAsync(res.SenderId);
-                //res.Provider = provider;
+                var provider = await _providerService.GetProviderByIdAsync(res.SenderId);
+                res.Provider = provider;
             }
             return pagination;
         }

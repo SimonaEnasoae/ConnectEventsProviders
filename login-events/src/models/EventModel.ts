@@ -3,8 +3,8 @@ export type EventModel = {
   Title: string;
   Description: string;
   Location: string;
-  EndDate: Date;
-  StartDate: Date;
+  EndDate: Date | null;
+  StartDate: Date | null;
   Tags: string[];
   // createdAt?: string;
   // updatedAt?: string;

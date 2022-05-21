@@ -16,7 +16,7 @@ namespace Events.Persistence
             if (!context.Events.Any())
             {
                 IEnumerable<Tag> tags = CreateTags();
-                var events = CreateEvents(tags, @"C:\Users\Lenovo\source\repos\ConnectEventsProviders\EventsServices\Events\Persistence\events.csv");
+                var events = CreateEvents(tags, @"C:\Projects\Extra\ConnectEventsProviders\EventsServices\Events\Persistence\events.csv");
                 context.Tags.AddRange(tags);
                 context.Events.AddRange(events);
             }
@@ -82,7 +82,8 @@ namespace Events.Persistence
                 Location = column[Array.IndexOf(csvheaders, "location")].Trim('"').Trim(),
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Today,
-                PictureUri = column[Array.IndexOf(csvheaders, "ImagePath")].Trim('"').Trim()
+                PictureUri = column[Array.IndexOf(csvheaders, "ImagePath")].Trim('"').Trim(),
+                OrganiserId= "903f82dd-4532-4be4-8ab9-bc84a00e77ba"
             };
             return newEvent;
         }

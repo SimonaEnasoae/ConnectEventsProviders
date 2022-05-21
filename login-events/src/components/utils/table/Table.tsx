@@ -16,7 +16,6 @@ const AppTable = ({
     useTable({
       columns: columnData,
       data: rowData,
-      manualPagination,
     });
 
   return (
@@ -33,7 +32,6 @@ const AppTable = ({
               })}
             </tbody>
           </table>
-          {manualPagination}
         </>
       )}
     </>

@@ -16,7 +16,7 @@ namespace Providers.Persistence
             if (!context.Providers.Any())
             {
                 IEnumerable<Tag> tags = CreateTags();
-                var providers = CreateProviders(tags, @"C:\Users\Lenovo\source\repos\EventsServices\Providers\Persistence\providers.csv");
+                var providers = CreateProviders(tags, @"C:\Projects\Extra\ConnectEventsProviders\EventsServices\Providers\Persistence\providers.csv");
                 context.Tags.AddRange(tags);
                 context.Providers.AddRange(providers);
             }
@@ -56,7 +56,7 @@ namespace Providers.Persistence
                 return null;
             }
 
-            string[] csvheaders = { "title", "location", "ImagePath", "Tag" };
+            string[] csvheaders = { "title", "location", "ImagePath", "Tag", "id" };
 
             return File.ReadAllLines(csvFileEvents)
                         .Skip(1) // skip header row
@@ -67,11 +67,10 @@ namespace Providers.Persistence
 
         private Provider CreateProvider(string[] column, string[] csvheaders, IEnumerable<Tag> tags)
         {
-            var id = Guid.NewGuid().ToString();
             var tagName = column[Array.IndexOf(csvheaders, "Tag")].Trim('"').Trim();
             var tag = tags.Where(tag => tag.Value == tagName).FirstOrDefault();
             var newProvider = new Provider() {
-                Id = id,
+                Id = column[Array.IndexOf(csvheaders, "id")].Trim('"').Trim(),
                 Title = column[Array.IndexOf(csvheaders, "title")].Trim('"').Trim(),
                 Description = "Lorem ipsum dolort sem. ",
                 Location = column[Array.IndexOf(csvheaders, "location")].Trim('"').Trim(),

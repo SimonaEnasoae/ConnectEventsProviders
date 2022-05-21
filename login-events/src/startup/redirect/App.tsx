@@ -13,7 +13,7 @@ const App: FC = () => {
 
   var wasLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   wasLoggedIn = wasLoggedIn ? wasLoggedIn : false;
-  dispatch(setAuthState(wasLoggedIn));
+  //  dispatch(setAuthState(wasLoggedIn));
 
   const isLoggedIn = useSelector(
     (state: RootState) => state.auth.isAuthenticated
@@ -23,7 +23,7 @@ const App: FC = () => {
       <Switch>
         <Route path="/">
           <Suspense fallback={<p>Loading...</p>}>
-            {isLoggedIn ? <Home /> : <Auth />}
+            {isLoggedIn || wasLoggedIn ? <Home /> : <Auth />}
           </Suspense>
         </Route>
       </Switch>

@@ -58,7 +58,7 @@ namespace Authentication.Persistence
 
             var user2 =
            new UserAuth() {
-               Id = Guid.NewGuid().ToString(),
+               Id = "8d9806ae-4f72-408f-b386-7a4e525a7417",
                Username = "esis2319",
                Password = "1234",
                Type = UserType.Provider
@@ -66,7 +66,7 @@ namespace Authentication.Persistence
 
             var user3 =
               new UserAuth() {
-                  Id = Guid.NewGuid().ToString(),
+                  Id = "903f82dd-4532-4be4-8ab9-bc84a00e77ba",
                   Username = "esis2318",
                   Password = "1234",
                   Type = UserType.EventHost
