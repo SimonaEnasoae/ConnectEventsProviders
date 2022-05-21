@@ -1,0 +1,20 @@
+.top-menu-bar {
+  text-align: conter;
+  background-color: #1abc9c;
+  border-color: #16a085;
+  color: #fff;
+  padding: 10px;
+}
+
+.navlink {
+  border-radius: 4px;
+  padding: 6px 10px;
+  margin-right: 10px;
+  text-decoration: none;
+  padding: 15px 15px;
+  color: #fff;
+}
+
+.navlink:hover {
+  color: black;
+}

@@ -1,0 +1,22 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "GrpcProvider";
+
+package ProviderApi;
+
+service Provider {
+	rpc GetProviderById (ProviderRequest) returns (ProviderResponse) {}
+}
+
+message ProviderRequest {
+	string id = 1;
+}
+
+message ProviderResponse {
+	string id = 1;
+	string title = 2;
+	string description = 3;
+	string location = 4;
+	bytes image = 5;
+	string tag = 6;
+}

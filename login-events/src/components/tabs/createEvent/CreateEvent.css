@@ -1,0 +1,50 @@
+.form-container {
+  width: 70%;
+  height: 70%;
+  margin: auto;
+  margin-top: 20px;
+}
+.name-input {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.imageInput {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5%;
+}
+
+.titleEvent {
+  margin-top: 3%;
+  margin-left: 12%;
+}
+
+.submit-button {
+  margin-top: 3%;
+  margin-left: 2%;
+}
+
+.name-input {
+  width: 100%;
+}
+
+.list {
+  box-shadow: 0 30px 60px rgb(0, 0, 0, 0.2);
+  display: none;
+}
+
+.task {
+  display: block;
+  padding-left: 0;
+  margin-left: 6%;
+}
+strong {
+  margin-left: 3%;
+}
+.task:hover {
+  background-color: aliceblue;
+}
+.show {
+  display: block;
+}

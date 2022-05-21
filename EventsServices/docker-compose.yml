@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:  
+  authentification:
+    container_name: api_container
+    image: ${DOCKER_REGISTRY-}api
+    build:
+      context: .
+      dockerfile: C:\Users\Lenovo\source\repos\EventsServices\Authentication\Dockerfile
+    ports:
+      - "49255:443"
+  events:
+    container_name: events_container
+    image: ${DOCKER_REGISTRY-}events
+    build:
+      context: .
+      dockerfile: C:\Users\Lenovo\source\repos\EventsServices\Events\Dockerfile
+    ports:
+      - "49256:443"
+
+  

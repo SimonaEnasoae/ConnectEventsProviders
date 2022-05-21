@@ -1,0 +1,46 @@
+.tag {
+  text-align: center;
+  height: 25px;
+  width: 70px;
+  margin-left: 10px;
+  padding: 0px;
+  margin-bottom: 2%;
+}
+
+.imgEvent {
+  height: 300px;
+  width: 200px;
+  margin-top: 3%;
+}
+
+tr,
+td {
+  display: inline;
+  border: 0;
+  padding: 0;
+}
+
+.requestBtn {
+  margin-top: 4%;
+  display: block;
+  margin-left: 40%;
+  margin-bottom: 3%;
+}
+
+.col-sm-4 {
+  border-radius: 50px;
+  border: 3px solid #add8e6;
+  /* margin: 5px; */
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+@media (min-width: 768px) {
+  .col-sm-4 {
+    width: 27.33333333%;
+  }
+}

@@ -1,0 +1,31 @@
+/* @import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
+
+
+.box {
+  height: 350px;
+  width:300px;
+  background: rgb(250, 239, 239);
+  border: 1px solid rgb(185, 179, 173);
+  margin-left: 30px ;
+  margin-top: 30px;
+  margin-bottom: 30px;
+} */
+
+.imgProvider {
+  height: 60%;
+}
+
+.tag {
+  text-align: center;
+  height: 25px;
+  width: 70px;
+  margin-left: 10px;
+  padding: 0px;
+}
+
+tr,
+td {
+  display: inline;
+  border: 0;
+  padding: 0;
+}
