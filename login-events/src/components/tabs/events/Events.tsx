@@ -85,15 +85,17 @@ const Events: FC = () => {
                   );
                 })}
                 {/* {user?.Type === "Provider" && ( */}
-                <button
-                  event-key={cells[0].value}
-                  organiser-key={cells[2].value}
-                  className="btn btn-primary requestBtn"
-                  onClick={sendRequest}
-                >
-                  {" "}
-                  Request
-                </button>
+                <p>
+                  <button
+                    event-key={cells[0].value}
+                    organiser-key={cells[2].value}
+                    className="btn btn-primary requestBtn"
+                    onClick={sendRequest}
+                  >
+                    {" "}
+                    Request
+                  </button>
+                </p>
                 {/* )} */}
               </div>
             </div>
