@@ -16,7 +16,8 @@ namespace Events.Persistence
             if (!context.Events.Any())
             {
                 IEnumerable<Tag> tags = CreateTags();
-                var events = CreateEvents(tags, @"C:\Projects\Extra\ConnectEventsProviders\EventsServices\Events\Persistence\events.csv");
+                var events = CreateEvents(tags, @"C:\Projects\Extra\ConnectEventsProviders\EventsServices\Events\Persistence\eventsLocal.csv");
+                //var events = CreateEvents(tags, @"/app/Persistence/events.csv");
                 context.Tags.AddRange(tags);
                 context.Events.AddRange(events);
             }
@@ -56,7 +57,7 @@ namespace Events.Persistence
                 return null;
             }
 
-            string[] csvheaders = { "title", "location", "ImagePath"};
+            string[] csvheaders = { "title", "location", "ImagePath","Id"};
 
             return File.ReadAllLines(csvFileEvents)
                         .Skip(1) // skip header row
@@ -67,7 +68,7 @@ namespace Events.Persistence
 
         private Event CreateEvent(string[] column, string[] csvheaders, IEnumerable<Tag> tags)
         {
-            var id = Guid.NewGuid().ToString();
+            var id = column[Array.IndexOf(csvheaders, "Id")].Trim('"').Trim();
             List<EventTag> eventTags = new List<EventTag>();
             foreach(Tag tag in tags)
             {
@@ -75,7 +76,7 @@ namespace Events.Persistence
             }
           
             var newEvent = new Event() {
-                Id = id, 
+                Id = id,
                 Title = column[Array.IndexOf(csvheaders, "title")].Trim('"').Trim(),
                 Description = "Lorem ipsum dolort sem. ",
                 EventTags = eventTags,

@@ -1,0 +1,66 @@
+.imgEvent1 {
+  height: 300px;
+  width: 200px;
+  margin-top: 3%;
+  padding: 8%;
+}
+
+.imgProvider1 {
+  height: 300px;
+  width: 450px;
+  margin-top: 3%;
+  padding: 4%;
+}
+
+.flex-container {
+  /* overflow: ; */
+  /* width: 100%; */
+  margin: 4%;
+  /* margin-right: 10%; */
+  /* margin-left: 20%; */
+  display: flex;
+  border-radius: 50px;
+  border: 3px solid #add8e6;
+}
+
+.flex-child {
+  display: 1;
+  padding-left: 10%;
+  /* padding-right: 20%; */
+}
+.flex-child1 {
+  display: 1;
+  padding-left: 10%;
+  /* padding-right: 20%; */
+}
+.pendingStatus {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  margin-left: 3%;
+  display: inline;
+  margin-bottom: 3%;
+  width: 20%;
+}
+
+.acceptBtn {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  margin-left: 3%;
+  display: inline;
+  margin-bottom: 3%;
+  width: 20%;
+  background-color: green;
+}
+.declineBtn {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  margin-left: 3%;
+  display: inline;
+  margin-bottom: 3%;
+  width: 20%;
+  background-color: red;
+}
+
+table {
+  width: 70% !important;
+}

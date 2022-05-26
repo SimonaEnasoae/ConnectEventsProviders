@@ -19,7 +19,7 @@ namespace WebBff.Controllers.Responses
         public string ReceiverId { get; set; }
         public string EventId { get; set; }
 
-        public Status Status { get; set; }
+        public string Status { get; set; }
 
         public RequestEvent() { }
 
@@ -29,7 +29,7 @@ namespace WebBff.Controllers.Responses
             ReceiverId = request.Receiverid;
             SenderId = request.Senderid;
             EventId = request.Eventid;
-            Status = (Status)request.Status;
+            Status = request.Status.ToString();
         }
 
     }

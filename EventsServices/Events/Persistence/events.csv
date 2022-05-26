@@ -1,18 +1,18 @@
-﻿Title,Location,ImagePath
-Electric Castel,Bontida,C:\Users\Lenovo\source\repos\EventsServices\Events\Pictures\bun\event1.png
-Jazz in the Park,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Events\Pictures\bun\event2.png
-Street Food Festival,Oradea,C:\Users\Lenovo\source\repos\EventsServices\Events\Pictures\bun\event3.png
-Street Food Festival,Iasi,C:\Users\Lenovo\source\repos\EventsServices\Events\Pictures\bun\event4.png
-Street Food Festival,Satu-Mare,C:\Users\Lenovo\source\repos\EventsServices\Events\Pictures\bun\event5.png
-Street Food Festival,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Events\Pictures\bun\event6.png
-Music Festival,Iasi,C:\Users\Lenovo\source\repos\EventsServices\Events\Pictures\bun\event7.png
-The Power of Food Festival,Iasi,C:\Users\Lenovo\source\repos\EventsServices\Events\Pictures\bun\event8.png 
-Jazz in the Park,Iasi,C:\Users\Lenovo\source\repos\EventsServices\Events\Pictures\bun\event9.png
-Untold,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Events\Pictures\bun\event10.png
-Untold V2,Iasi, C:\Users\Lenovo\source\repos\EventsServices\Events\Pictures\bun\event11.png
-Film Festival,Iasi,C:\Users\Lenovo\source\repos\EventsServices\Events\Pictures\bun\event12.png
-Zilele Orasului, Oravita,C:\Users\Lenovo\source\repos\EventsServices\Events\Pictures\bun\event13.png
-Zilele Orasului,Hateg,C:\Users\Lenovo\source\repos\EventsServices\Events\Pictures\bun\event14.png
-Zilele Orasului,Satu-Mare,C:\Users\Lenovo\source\repos\EventsServices\Events\Pictures\bun\event15.png
-Saga, Bucuresti,C:\Users\Lenovo\source\repos\EventsServices\Events\Pictures\bun\event16.png
-Hustle, Iasi,C:\Users\Lenovo\source\repos\EventsServices\Events\Pictures\bun\event17.png
+﻿Title,Location,ImagePath, Id
+Electric Castel,Bontida,/app/Pictures/bun/event1.png, 01014362-c1a2-4211-bfff-bf6aff12cb22
+Jazz in the Park,Cluj-Napoca,/app/Pictures/bun/event2.png, 0343d90f-e8a4-41be-8be3-94992f253880
+Street Food Festival,Oradea,/app/Pictures/bun/event3.png, 14d8fd31-d986-4ce4-9be7-b2dcf6ec79f6
+Street Food Festival,Iasi,/app/Pictures/bun/event4.png,14d8fd31-d986-4ce4-9be7-b2dcf6ec79f5
+Street Food Festival,Satu-Mare,/app/Pictures/bun/event5.png, 14d8fd31-d986-4ce4-9be7-b2dcf6ec79f4
+Street Food Festival,Cluj-Napoca,/app/Pictures/bun/event6.png, 14d8fd31-d986-4ce4-9be7-b2dcf6ec79f3
+Music Festival,Iasi,/app/Pictures/bun/event7.png, 14d8fd31-d986-4ce4-9be7-b2dcf6ec79f2
+The Power of Food Festival,Iasi,/app/Pictures/bun/event8.png, 14d8fd31-d986-4ce4-9be7-b2dcf6ec79f1 
+Jazz in the Park,Iasi,/app/Pictures/bun/event9.png, 14d8fd31-d986-4ce4-9be7-b2dcf6ec79f0
+Untold,Cluj-Napoca,/app/Pictures/bun/event10.png, 14d8fd31-d986-4ce4-9be7-b2dcf6ec79f7
+Untold V2,Iasi, /app/Pictures/bun/event11.png, 14d8fd31-d986-4ce4-9be7-b2dcf6ec79f8
+Film Festival,Iasi,/app/Pictures/bun/event12.png, 01014362-c1a2-4211-bfff-bf6aff12cb23
+Zilele Orasului, Oravita,/app/Pictures/bun/event13.png, 01014362-c1a2-4211-bfff-bf6aff12cb24
+Zilele Orasului,Hateg,/app/Pictures/bun/event14.png, 01014362-c1a2-4211-bfff-bf6aff12cb25
+Zilele Orasului,Satu-Mare,/app/Pictures/bun/event15.png, 01014362-c1a2-4211-bfff-bf6aff12cb26
+Saga, Bucuresti,/app/Pictures/bun/event16.png, 01014362-c1a2-4211-bfff-bf6aff12cb27
+Hustle, Iasi,/app/Pictures/bun/event17.png, 01014362-c1a2-4211-bfff-bf6aff12cb28

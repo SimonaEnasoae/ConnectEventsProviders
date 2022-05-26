@@ -47,8 +47,8 @@ namespace WebBff.Controllers
         {
             var response = await _requestService.GetRequestEventsByOrganiserIdAsync(organiserId, pageSize, pageIndex);
             var pagination = new RequestEventOrganiserPaginationRespose(response);
-            var request = pagination.Data.FirstOrDefault();
-            var eventObj =  _eventService.GetEventByIdAsync(request.EventId);
+            //var request = pagination.Data.FirstOrDefault();
+            //var eventObj =  _eventService.GetEventByIdAsync(request.EventId);
             return pagination;
         }
 
@@ -68,6 +68,14 @@ namespace WebBff.Controllers
                 res.Provider = provider;
             }
             return pagination;
+        }
+
+        [Route("status")]
+        [HttpPost]
+        public async Task<CreateRequestResponse> PostRequestStatusAsync([FromBody] UpdateRequest request)
+        {
+            var response = await  _requestService.UpdateStatus(request.Id, request.Status);
+            return new CreateRequestResponse() { success = true };
         }
     }
 }

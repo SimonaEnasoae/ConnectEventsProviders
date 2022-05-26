@@ -153,7 +153,7 @@ const UpdateProfile = () => {
                     name=""
                     id="Food"
                     onClick={updateSelectedTags}
-                    checked={provider.tag === "Food"}
+                    defaultChecked={provider.tag === "Food"}
                   />
                   Food
                 </label>
@@ -163,7 +163,7 @@ const UpdateProfile = () => {
                     name=""
                     id="Clothes"
                     onClick={updateSelectedTags}
-                    checked={provider.tag === "Clothes"}
+                    defaultChecked={provider.tag === "Clothes"}
                   />
                   Clothes
                 </label>
@@ -173,7 +173,7 @@ const UpdateProfile = () => {
                     name=""
                     id="Game"
                     onClick={updateSelectedTags}
-                    checked={provider.tag === "Game"}
+                    defaultChecked={provider.tag === "Game"}
                   />
                   Game
                 </label>
@@ -183,7 +183,7 @@ const UpdateProfile = () => {
                     name=""
                     id="Other"
                     onClick={updateSelectedTags}
-                    checked={provider.tag === "Other"}
+                    defaultChecked={provider.tag === "Other"}
                   />
                   Other
                 </label>

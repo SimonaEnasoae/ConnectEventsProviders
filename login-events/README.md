@@ -9,3 +9,5 @@ npm i react-table //not this, this npm i --save-dev @types/react-table
 npm i sweetalert2
 
 -npm install react-router-dom@5
+
+npm install moment

@@ -1,21 +1,21 @@
-﻿Title,Location,ImagePath,Tag
-La Piadina,Iasi,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider1.png, Food
-Cotton Candy,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider2.png, Food
-Alamy,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider3.png, Food
-Folie Crepes,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider4.png, Food
-Jour,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider5.png, Food
-Bulba,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider6.png, Food
-Heaven,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider7.png, Food
-StickDog,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider8.png, Food
-Blues ,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider9.png, Food
-Grill,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider10.png, Food
-Gypsy Kitchen,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider11.png, Food
-Peace,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider12.png, Food
-Happy at Larry,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider13.png, Food
-Margurite du Prit,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider14.png, Food
-Balloons ,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider15.png, Game
-Pelican,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider16.png, Game
-Grand Carnival,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider17.png, Game
-Norts and Roses,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider18.png, Clothes
-Surya,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider19.png, Clothes
-Traditional,Cluj-Napoca,C:\Users\Lenovo\source\repos\EventsServices\Providers\Pictures\provider20.png, Clothes
+﻿Title,Location,ImagePath,Tag, id
+La Piadina,Iasi,/app/Pictures/provider1.png, Food,8d9806ae-4f72-408f-b386-7a4e525a7417
+Cotton Candy,Cluj-Napoca,/app/Pictures/provider2.png, Food,8d9806ae-4f72-408f-b386-7a4e525a7418
+Alamy,Cluj-Napoca,/app/Pictures/provider3.png, Food, 8d9806ae-4f72-408f-b386-7a4e525a7419
+Folie Crepes,Cluj-Napoca,/app/Pictures/provider4.png, Food, 8d9806ae-4f72-408f-b386-7a4e525a7410
+Jour,Cluj-Napoca,/app/Pictures/provider5.png, Food, 8d9806ae-4f72-408f-b386-7a4e525a7411
+Bulba,Cluj-Napoca,/app/Pictures/provider6.png, Food, 8d9806ae-4f72-408f-b386-7a4e525a7412
+Heaven,Cluj-Napoca,/app/Pictures/provider7.png, Food, 8d9806ae-4f72-408f-b386-7a4e525a7413
+StickDog,Cluj-Napoca,/app/Pictures/provider8.png, Food, 8d9806ae-4f72-408f-b386-7a4e525a7414
+Blues ,Cluj-Napoca,/app/Pictures/provider9.png, Food, 8d9806ae-4f72-408f-b386-7a4e525a7415
+Grill,Cluj-Napoca,/app/Pictures/provider10.png, Food, 8d9806ae-4f72-408f-b386-7a4e525a7416
+Gypsy Kitchen,Cluj-Napoca,/app/Pictures/provider11.png, Food, 8d9806ae-4f72-408f-b386-7a4e525a7420
+Peace,Cluj-Napoca,/app/Pictures/provider12.png, Food, 8d9806ae-4f72-408f-b386-7a4e525a7421
+Happy at Larry,Cluj-Napoca,/app/Pictures/provider13.png, Food, 8d9806ae-4f72-408f-b386-7a4e525a7422
+Margurite du Prit,Cluj-Napoca,/app/Pictures/provider14.png, Food, 8d9806ae-4f72-408f-b386-7a4e525a7423
+Balloons ,Cluj-Napoca,/app/Pictures/provider15.png, Game, 8d9806ae-4f72-408f-b386-7a4e525a7424
+Pelican,Cluj-Napoca,/app/Pictures/provider16.png, Game, 8d9806ae-4f72-408f-b386-7a4e525a7425
+Grand Carnival,Cluj-Napoca,/app/Pictures/provider17.png, Game, 8d9806ae-4f72-408f-b386-7a4e525a7426
+Norts and Roses,Cluj-Napoca,/app/Pictures/provider18.png, Clothes, 8d9806ae-4f72-408f-b386-7a4e525a7427
+Surya,Cluj-Napoca,/app/Pictures/provider19.png, Clothes, 8d9806ae-4f72-408f-b386-7a4e525a7428
+Traditional,Cluj-Napoca,/app/Pictures/provider20.png, Clothes, 8d9806ae-4f72-408f-b386-7a4e525a7429

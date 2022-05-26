@@ -11,8 +11,7 @@ namespace WebBff.Services
     {
         Task<RequestData> CreateAsync(RequestData requestData);
 
-        Task<RequestData> UpdateAsync(RequestData currentBasket);
         Task<PaginatedRequestEventsResponse> GetRequestEventsByOrganiserIdAsync(string organiserId, int pageSize, int pageIndex);
-
+        Task<RequestData> UpdateStatus(string id, int status);
     }
 }

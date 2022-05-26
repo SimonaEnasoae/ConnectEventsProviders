@@ -6,7 +6,7 @@ package RequestApi;
 
 service Request {
 	rpc CreateRequestEvent(RequestEventResponse) returns (RequestEventResponse) {}
-	rpc UpdateRequestEvent(RequestEventResponse) returns (RequestEventResponse) {}
+	rpc UpdateRequestEvent(UpdateRequestEventRequest) returns (RequestEventResponse) {}
 	rpc GetRequestEventsByOrganiserId (RequestEventsByOrganiserId) returns (PaginatedRequestEventsResponse) {}
 }
 
@@ -34,4 +34,14 @@ message PaginatedRequestEventsResponse {
 	int32 pageSize = 2;
 	int64 count = 3;
 	repeated RequestEventResponse data = 4;
+}
+
+message UpdateRequestEventRequest {
+	string id = 1;
+	enum Status {
+    PENDING = 0;
+    ACCEPTED = 1;
+    DECLINED = 2;
+  }
+  Status status = 2;
 }

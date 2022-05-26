@@ -79,7 +79,7 @@ export const savePictureEvent = async (formData) => {
 };
 
 export const getImage = async () => {
-  fetch("https://localhost:5003/api/events/pic").then((response) =>
+  fetch("http://localhost:5003/api/events/pic").then((response) =>
     response.json()
   );
 };

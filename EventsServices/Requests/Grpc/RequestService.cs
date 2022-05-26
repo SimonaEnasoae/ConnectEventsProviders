@@ -31,15 +31,24 @@ namespace Requests.Grpc
         }
 
         [AllowAnonymous]
-        public override async Task<RequestEventResponse> UpdateRequestEvent(RequestEventResponse request, ServerCallContext context)
+        public override async Task<RequestEventResponse> UpdateRequestEvent(UpdateRequestEventRequest request, ServerCallContext context)
         {
-            return new RequestEventResponse() { Id = "1" };
+            var req = await requestsDbContext.RequestEvents.Where(req => request.Id.Equals(req.Id)).FirstOrDefaultAsync();
+            req.Status = (Model.Status)request.Status;
+            requestsDbContext.SaveChanges();
+
+            return new RequestEventResponse() {
+                Id = request.Id,
+                Senderid=req.SenderId,
+                Receiverid=req.SenderId,
+                Eventid=req.EventId,
+                Status= (RequestEventResponse.Types.Status)req.Status};
         }
 
         [AllowAnonymous]
         public override async Task<PaginatedRequestEventsResponse> GetRequestEventsByOrganiserId(RequestEventsByOrganiserId request, ServerCallContext context)
         {
-            var requests = await requestsDbContext.RequestEvents.Where(req => request.OrganiserId.Equals(req.SenderId)).ToListAsync();
+            var requests = await requestsDbContext.RequestEvents.Where(req => request.OrganiserId.Equals(req.SenderId)||request.OrganiserId.Equals(req.ReceiverId)).ToListAsync();
 
             var requestsOnpage = requests
           .Skip(request.PageSize * request.PageIndex)

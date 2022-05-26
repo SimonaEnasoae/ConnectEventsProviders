@@ -3,8 +3,12 @@ version: '3.4'
 services:
     authentification:
         environment:
-        - ASPNETCORE_ENVIRONMENT=Development
-        - ASPNETCORE_URLS=https://+:443;http://+:80
-        volumes:
-        - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-        - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_URLS=http://0.0.0.0:80
+        ports: 
+            - "5101:80"
+            - "5101:81"
+
+        #volumes:
+        #- ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+        #- ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

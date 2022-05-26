@@ -23,6 +23,7 @@ import "./Home.css";
 import UpdateProfile from "../../components/tabs/updateProfile/UpdateProfile";
 import { RootState } from "../../components/auth/state-management/rootReducer";
 import { useSelector } from "react-redux";
+import Requests from "../../components/tabs/requests/Requests";
 const Home: FC = () => {
   const user = useSelector((state: RootState) => state.user.user);
 
@@ -49,6 +50,9 @@ const Home: FC = () => {
         <NavLink className={"navlink"} to="/updateProfile">
           Update Profile
         </NavLink>
+        <NavLink className={"navlink"} to="/requests">
+          Requests
+        </NavLink>
         {/* )} */}
         <NavLink className={"navlink"} to="/logout">
           Logout
@@ -73,6 +77,9 @@ const Home: FC = () => {
           </Route>
           <Route path="/updateProfile">
             <UpdateProfile />
+          </Route>
+          <Route path="/requests">
+            <Requests />
           </Route>
           <Route path="/logout">
             <Logout />

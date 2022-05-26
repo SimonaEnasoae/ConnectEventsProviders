@@ -41,23 +41,27 @@ namespace WebBff
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<IProviderService, ProviderService>();
 
-
+            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2Support", true);
 
             services.AddGrpcClient<Request.RequestClient>((services, options) =>
             {
                 //var basketApi = services.GetRequiredService<IOptions<UrlConfig>>().Value.GrpcBasket;
+                //options.Address = new Uri("http://192.168.0.87:49156");
                 options.Address = new Uri("http://localhost:5006");
             });
 
             services.AddGrpcClient<Event.EventClient>((services, options) =>
             {
                 //var basketApi = services.GetRequiredService<IOptions<UrlConfig>>().Value.GrpcBasket;
+                //options.Address = new Uri("http://192.168.0.87:49154");
                 options.Address = new Uri("http://localhost:5002");
             });
 
             services.AddGrpcClient<Provider.ProviderClient>((services, options) =>
             {
                 //var basketApi = services.GetRequiredService<IOptions<UrlConfig>>().Value.GrpcBasket;
+                //options.Address = new Uri("http://192.168.0.87:49155");
                 options.Address = new Uri("http://localhost:5004");
             });
             //.AddInterceptor<GrpcExceptionInterceptor>();

@@ -10,6 +10,7 @@ namespace WebBff.Controllers.Responses
     {
         public ComplexRequestEvent(RequestEventResponse request) : base(request)
         {
+
         }
 
         public EventModel EventModel { get; set; }

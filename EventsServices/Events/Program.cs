@@ -57,7 +57,7 @@ Serilog.ILogger CreateSerilogLogger(IConfiguration configuration)
         .Enrich.FromLogContext()
         .WriteTo.Console()
         .WriteTo.Seq(string.IsNullOrWhiteSpace(seqServerUrl) ? "http://seq" : seqServerUrl)
-        .WriteTo.Http(string.IsNullOrWhiteSpace(logstashUrl) ? "http://localhost:8080" : logstashUrl)
+        //.WriteTo.Http(string.IsNullOrWhiteSpace(logstashUrl) ? "http://localhost:8080" : logstashUrl)
         .ReadFrom.Configuration(configuration)
         .CreateLogger();
 }
@@ -66,12 +66,14 @@ Serilog.ILogger CreateSerilogLogger(IConfiguration configuration)
              .ConfigureKestrel(options =>
              {
 
+                 //options.Listen(IPAddress.Any, 80, listenOptions =>
                  options.Listen(IPAddress.Any, 5003, listenOptions =>
                  {
                      listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
                      listenOptions.UseHttps();
                  });
 
+                 //options.Listen(IPAddress.Any, 49154, listenOptions =>
                  options.Listen(IPAddress.Any, 5002, listenOptions =>
                  {
                      listenOptions.Protocols = HttpProtocols.Http2;

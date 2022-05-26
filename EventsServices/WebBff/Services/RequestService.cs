@@ -37,10 +37,6 @@ namespace WebBff.Services
             return new RequestData(response);
         }
 
-        public Task<RequestData> UpdateAsync(RequestData currentBasket)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<PaginatedRequestEventsResponse> GetRequestEventsByOrganiserIdAsync(string organiserId, int pageSize, int pageIndex)
         {
@@ -51,6 +47,17 @@ namespace WebBff.Services
                 PageIndex = pageIndex
             });
 
+        }
+
+        public async Task<RequestData> UpdateStatus(string id, int status)
+        {
+            var request = new UpdateRequestEventRequest()
+            {
+                Id = id,
+                Status = (UpdateRequestEventRequest.Types.Status)status
+            };
+            var response = await _requestClient.UpdateRequestEventAsync(request);
+            return new RequestData(response);
         }
     }
 }

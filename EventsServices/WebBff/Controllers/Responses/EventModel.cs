@@ -30,7 +30,7 @@ namespace WebBff.Controllers.Responses
             Location = eventObj.Location;
             OrganiserId = eventObj.OrganiserId;
             EndDate = eventObj.EndDate.ToDateTime();
-            EndDate = eventObj.StartDate.ToDateTime();
+            StartDate = eventObj.StartDate.ToDateTime();
             Image = eventObj.Image.ToByteArray();
             Tags = eventObj.Tags.Select(tag => new TagDto() { Id = tag.Id, Value = tag.Value }).ToList();
         }
