@@ -33,27 +33,28 @@ const Home: FC = () => {
         <NavLink className={"navlink"} to="/events">
           Events
         </NavLink>
-        {/* {user?.Type === "EventHost" && ( */}
-        <NavLink className={"navlink"} to="/createEvent">
-          Create Event
-        </NavLink>
-        {/* )}
-        {user?.Type === "EventHost" && ( */}
-        <NavLink className={"navlink"} to="/myEvents">
-          My Events
-        </NavLink>
-        {/* )} */}
+        {user?.Type === "EventHost" && (
+          <NavLink className={"navlink"} to="/createEvent">
+            Create Event
+          </NavLink>
+        )}
+        {user?.Type === "EventHost" && (
+          <NavLink className={"navlink"} to="/myEvents">
+            My Events
+          </NavLink>
+        )}
         <NavLink className={"navlink"} to="/providers">
           Providers
         </NavLink>
-        {/* {user?.Type === "Provider" && ( */}
-        <NavLink className={"navlink"} to="/updateProfile">
-          Update Profile
-        </NavLink>
+        {user?.Type === "Provider" && (
+          <NavLink className={"navlink"} to="/updateProfile">
+            Update Profile
+          </NavLink>
+        )}
         <NavLink className={"navlink"} to="/requests">
           Requests
         </NavLink>
-        {/* )} */}
+
         <NavLink className={"navlink"} to="/logout">
           Logout
         </NavLink>

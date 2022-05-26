@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WebBff.Controllers.Responses
 {
-    public class ComplexRequestEvent : RequestEvent
+    public class ExtendedRequestEvent : RequestEvent
     {
-        public ComplexRequestEvent(RequestEventResponse request) : base(request)
+        public ExtendedRequestEvent(RequestEventResponse request) : base(request)
         {
 
         }

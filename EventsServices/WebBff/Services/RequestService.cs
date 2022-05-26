@@ -38,11 +38,11 @@ namespace WebBff.Services
         }
 
 
-        public async Task<PaginatedRequestEventsResponse> GetRequestEventsByOrganiserIdAsync(string organiserId, int pageSize, int pageIndex)
+        public async Task<PaginatedRequestEventsResponse> GetRequestEventsByOrganiserIdAsync(string userId, int pageSize, int pageIndex)
         {
-            return await _requestClient.GetRequestEventsByOrganiserIdAsync(new RequestEventsByOrganiserId()
+            return await _requestClient.GetRequestEventsByUserIdAsync(new RequestEventsByUserId()
             {
-                OrganiserId = organiserId,
+                UserId = userId,
                 PageSize = pageSize,
                 PageIndex = pageIndex
             });

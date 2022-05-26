@@ -11,7 +11,7 @@ namespace WebBff.Services
     {
         Task<RequestData> CreateAsync(RequestData requestData);
 
-        Task<PaginatedRequestEventsResponse> GetRequestEventsByOrganiserIdAsync(string organiserId, int pageSize, int pageIndex);
+        Task<PaginatedRequestEventsResponse> GetRequestEventsByOrganiserIdAsync(string userId, int pageSize, int pageIndex);
         Task<RequestData> UpdateStatus(string id, int status);
     }
 }

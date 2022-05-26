@@ -68,13 +68,9 @@ export const formatRawData = (rawData) => {
   }));
 };
 
-export const getRequests = async (
-  organiserId = "",
-  pageSize = 9,
-  pageIndex = 0
-) => {
+export const getRequests = async (userId = "", pageSize = 6, pageIndex = 0) => {
   const response = await fetch(
-    `${UrlRequestsBase}requests/complex?organiserId=${organiserId}&pageSize=${pageSize}&pageIndex=${pageIndex}`
+    `${UrlRequestsBase}requests?userId=${userId}&pageSize=${pageSize}&pageIndex=${pageIndex}`
   );
   const data = await response.json();
   return data;

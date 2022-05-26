@@ -8,7 +8,7 @@ const AppTable = ({
   columns,
   data,
   isLoading,
-  manualPagination = false,
+  classTable = "",
 }) => {
   const columnData = useMemo(() => columns, [columns]);
   const rowData = useMemo(() => data, [data]);
@@ -24,7 +24,7 @@ const AppTable = ({
         <Loader />
       ) : (
         <>
-          <table {...getTableProps()}>
+          <table {...getTableProps()} className={classTable}>
             <tbody {...getTableBodyProps()}>
               {rows.map((row, i) => {
                 prepareRow(row);

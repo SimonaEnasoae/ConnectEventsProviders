@@ -21,7 +21,7 @@ const Requests: FC = () => {
     rowData: [],
     isLoading: false,
     totalPages: 0,
-    totalRequests: 20,
+    totalRequests: 9,
   });
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,13 +32,13 @@ const Requests: FC = () => {
       isLoading: true,
     }));
 
-    getRequests(user?.Id, 9, currentPage - 1).then((info) => {
+    getRequests(user?.Id, 3, currentPage - 1).then((info) => {
       const { totalPages, totalRequests, data } = info;
       setPageData({
         isLoading: false,
         rowData: formatRawData(data),
-        totalPages,
-        totalRequests: 20,
+        totalPages: totalPages,
+        totalRequests: totalRequests,
       });
     });
   }, [currentPage]);
@@ -55,13 +55,25 @@ const Requests: FC = () => {
     });
   }
 
+  function updateStatusAccept(event: any) {
+    const requestId = event.target.attributes["request-key"]?.value;
+    const request = {
+      Id: requestId,
+      Status: 1,
+    };
+    console.log(request);
+    declineRequest(request).then((response) => {
+      showAlert("Request accepted", "success");
+    });
+  }
+
   function displayRequest(cells: any) {
     return (
       //   <div key={cells[0].value}>
       // {/* {console.log(cells)} */}
       <tr key={cells[0].value}>
         <td>
-          {console.log(cells)}
+          {/* {console.log(cells)} */}
           <div className="flex-container">
             <div className="flex-child">
               <img
@@ -80,26 +92,32 @@ const Requests: FC = () => {
                 src={`data:image/png;base64,${cells[2].value}`}
               ></img>
               <p>{cells[6].value}</p>
+
               <button
                 className="btn btn-primary pendingStatus"
                 // onClick={sendRequest}
               >
                 {cells[7].value}
               </button>
-              <button
-                request-key={cells[0].value}
-                className="btn btn-primary acceptBtn"
-                onClick={updateStatusDecline}
-              >
-                Accept
-              </button>
-              <button
-                request-key={cells[0].value}
-                className="btn btn-primary declineBtn"
-                onClick={updateStatusDecline}
-              >
-                Decline
-              </button>
+
+              {cells[7].value === "Pending" && user?.Type === "EventHost" && (
+                <button
+                  request-key={cells[0].value}
+                  className="btn btn-primary acceptBtn"
+                  onClick={updateStatusAccept}
+                >
+                  Accept
+                </button>
+              )}
+              {cells[7].value === "Pending" && user?.Type === "EventHost" && (
+                <button
+                  request-key={cells[0].value}
+                  className="btn btn-primary declineBtn"
+                  onClick={updateStatusDecline}
+                >
+                  Decline
+                </button>
+              )}
             </div>
           </div>
         </td>
@@ -115,12 +133,13 @@ const Requests: FC = () => {
           columns={columns}
           data={pageData.rowData}
           isLoading={pageData.isLoading}
+          classTable={"tableReq"}
         />
         <div>
           <Pagination
             totalRows={pageData.totalRequests}
             pageChangeHandler={setCurrentPage}
-            rowsPerPage={9}
+            rowsPerPage={3}
           />
         </div>
       </div>

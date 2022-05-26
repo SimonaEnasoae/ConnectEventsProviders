@@ -46,13 +46,13 @@ namespace Requests.Grpc
         }
 
         [AllowAnonymous]
-        public override async Task<PaginatedRequestEventsResponse> GetRequestEventsByOrganiserId(RequestEventsByOrganiserId request, ServerCallContext context)
+        public override async Task<PaginatedRequestEventsResponse> GetRequestEventsByUserId(RequestEventsByUserId request, ServerCallContext context)
         {
-            var requests = await requestsDbContext.RequestEvents.Where(req => request.OrganiserId.Equals(req.SenderId)||request.OrganiserId.Equals(req.ReceiverId)).ToListAsync();
+            var requests = await requestsDbContext.RequestEvents.Where(req => request.UserId.Equals(req.SenderId)||request.UserId.Equals(req.ReceiverId)).ToListAsync();
 
-            var requestsOnpage = requests
+            var requestsOnPage = requests
           .Skip(request.PageSize * request.PageIndex)
-          .Take(request.PageSize);
+          .Take(request.PageSize).ToList();
 
             var result = new PaginatedRequestEventsResponse() {
                 Count = requests.Count,
@@ -60,7 +60,7 @@ namespace Requests.Grpc
                 PageSize = request.PageSize,
             };
 
-            requests.ForEach(request => {
+            requestsOnPage.ForEach(request => {
                 result.Data.Add(new RequestEventResponse() {
                     Id = request.Id,
                     Senderid  =request.SenderId,

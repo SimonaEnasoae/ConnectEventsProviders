@@ -43,22 +43,11 @@ namespace WebBff.Controllers
         }
 
         [HttpGet]
-        public async Task<RequestEventOrganiserPaginationRespose> GetAsync([FromQuery] string organiserId = "", int pageSize = 9, [FromQuery] int pageIndex = 0)
+        public async Task<RequestEventOrganiserPaginationRespose> GetRequestAsync([FromQuery] string userId = "", int pageSize = 6, int pageIndex = 0)
         {
-            var response = await _requestService.GetRequestEventsByOrganiserIdAsync(organiserId, pageSize, pageIndex);
+            var response = await _requestService.GetRequestEventsByOrganiserIdAsync(userId, pageSize, pageIndex);
             var pagination = new RequestEventOrganiserPaginationRespose(response);
-            //var request = pagination.Data.FirstOrDefault();
-            //var eventObj =  _eventService.GetEventByIdAsync(request.EventId);
-            return pagination;
-        }
-
-        [Route("complex")]
-        [HttpGet]
-        public async Task<RequestEventOrganiserPaginationRespose> GetRequestAsync([FromQuery] string organiserId = "", int pageSize = 9, [FromQuery] int pageIndex = 0)
-        {
-            var response = await _requestService.GetRequestEventsByOrganiserIdAsync(organiserId, pageSize, pageIndex);
-            var pagination = new RequestEventOrganiserPaginationRespose(response);
-            foreach (ComplexRequestEvent res in pagination.Data)
+            foreach (var res in pagination.Data)
             {
 
                 var eventObj = await _eventService.GetEventByIdAsync(res.EventId);

@@ -33,8 +33,8 @@ const MyEvents: FC = () => {
       setPageData({
         isLoading: false,
         rowData: formatRawData(data),
-        totalPages,
-        totalEvents: 20,
+        totalPages: totalPages,
+        totalEvents: totalEvents,
       });
     });
   }, [currentPage]);
@@ -50,7 +50,7 @@ const MyEvents: FC = () => {
                 src={`data:image/png;base64,${cells[7].value}`}
               ></img>
               <div className="boxInfo">
-                <p> {cells[1].value} </p>
+                <p className="titleEvent"> {cells[1].value} </p>
                 <p> {cells[3].value}</p>
                 <p>
                   {" "}
@@ -58,7 +58,7 @@ const MyEvents: FC = () => {
                 </p>
                 {cells[6].value.map((tag) => {
                   return (
-                    <button key={tag.id} className="tag">
+                    <button key={tag.id} className="tag btn-info">
                       {" "}
                       {tag.value}
                     </button>

@@ -35,19 +35,22 @@ const Providers: FC = () => {
 
   function displayProvider(cells: any) {
     return (
-      <tr>
+      <tr key={cells[0].value}>
         <td>
-          <div className="col-sm-4 ">
+          <div className="col-sm-4 wrapper">
             <div className="box info">
               <img
                 className="imgProvider"
                 src={`data:image/png;base64,${cells[4].value}`}
               ></img>
-              {console.log(cells)}
+              {/* {console.log(cells)} */}
               <div>
-                <p> {cells[0].value} </p>
-                <p> {cells[2].value}</p>
-                <button className="tag"> {cells[3].value}</button>
+                <p className="titleProvider"> {cells[0].value} </p>
+                <p className="locationProvider"> {cells[2].value}</p>
+                <button className="tag tagProvider btn-primary">
+                  {" "}
+                  {cells[3].value}
+                </button>
               </div>
             </div>
           </div>

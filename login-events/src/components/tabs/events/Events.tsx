@@ -37,8 +37,8 @@ const Events: FC = () => {
       setPageData({
         isLoading: false,
         rowData: formatRawData(data),
-        totalPages,
-        totalEvents: 20,
+        totalPages: totalPages,
+        totalEvents: totalEvents,
       });
     });
   }, [currentPage]);
@@ -70,7 +70,7 @@ const Events: FC = () => {
                 src={`data:image/png;base64,${cells[7].value}`}
               ></img>
               <div className="boxInfo">
-                <p> {cells[1].value} </p>
+                <p className="titleEvent"> {cells[1].value} </p>
                 <p> {cells[3].value}</p>
                 <p>
                   {" "}
@@ -78,25 +78,25 @@ const Events: FC = () => {
                 </p>
                 {cells[6].value.map((tag) => {
                   return (
-                    <button key={tag.id} className="tag">
+                    <button key={tag.id} className="tag btn btn-info">
                       {" "}
                       {tag.value}
                     </button>
                   );
                 })}
-                {/* {user?.Type === "Provider" && ( */}
-                <p>
-                  <button
-                    event-key={cells[0].value}
-                    organiser-key={cells[2].value}
-                    className="btn btn-primary requestBtn"
-                    onClick={sendRequest}
-                  >
-                    {" "}
-                    Request
-                  </button>
-                </p>
-                {/* )} */}
+                {user?.Type === "Provider" && (
+                  <p>
+                    <button
+                      event-key={cells[0].value}
+                      organiser-key={cells[2].value}
+                      className="btn btn-primary requestBtn"
+                      onClick={sendRequest}
+                    >
+                      {" "}
+                      Request
+                    </button>
+                  </p>
+                )}
               </div>
             </div>
           </div>

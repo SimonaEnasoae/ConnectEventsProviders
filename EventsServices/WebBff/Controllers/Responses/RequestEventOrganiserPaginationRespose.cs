@@ -10,12 +10,12 @@ namespace WebBff.Controllers.Responses
     {
         public RequestEventOrganiserPaginationRespose(PaginatedRequestEventsResponse response)
         {
-            TotalRequests = response.Data.Count;
+            TotalRequests = Decimal.ToInt32(response.Count);
             TotalPages = response.Data.Count / response.PageSize + 1;
-            Data = new List<ComplexRequestEvent>();
+            Data = new List<ExtendedRequestEvent>();
             foreach(RequestEventResponse req in response.Data)
             {
-                Data.Add(new ComplexRequestEvent(req));
+                Data.Add(new ExtendedRequestEvent(req));
             }
         }
 
@@ -23,6 +23,6 @@ namespace WebBff.Controllers.Responses
 
         public int TotalPages { get; set; }
 
-        public ICollection<ComplexRequestEvent> Data { get; set; }
+        public ICollection<ExtendedRequestEvent> Data { get; set; }
     }
 }
