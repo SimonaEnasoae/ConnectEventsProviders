@@ -6,6 +6,12 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
+	<ItemGroup>
+		<Protobuf Include="Proto\auth.proto" GrpcServices="Server" Generator="MSBuild:Compile" />
+		<Content Include="@(Protobuf)" />
+		<None Remove="@(Protobuf)" />
+	</ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.10" />

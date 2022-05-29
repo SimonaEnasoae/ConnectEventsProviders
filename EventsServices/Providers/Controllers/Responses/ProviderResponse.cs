@@ -15,13 +15,13 @@ namespace Providers.Controllers.Responses
 
         public Byte[] Image { get; set; }
 
-        public ProviderResponse(Provider baseProvider)
+        public ProviderResponse(ProviderDb baseProviderDb)
         {
-            Id = baseProvider.Id;
-            Title = baseProvider.Title;
-            Location = baseProvider.Location;
-            Description = baseProvider.Description;
-            Tag = baseProvider.Tag.Value;
+            Id = baseProviderDb.Id;
+            Title = baseProviderDb.Title;
+            Location = baseProviderDb.Location;
+            Description = baseProviderDb.Description;
+            Tag = baseProviderDb.Tag.Value;
         }
         public ProviderResponse() { }
 

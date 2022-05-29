@@ -15,12 +15,12 @@ namespace Providers.Services
             _providerDbContext = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public IEnumerable<Provider> GetAll()
+        public IEnumerable<ProviderDb> GetAll()
         {
             return _providerDbContext.GetAll();
         }
 
-        public Provider GetProvider(string providerId)
+        public ProviderDb GetProvider(string providerId)
         {
             return _providerDbContext.GetProvider(providerId);
         }
@@ -30,22 +30,22 @@ namespace Providers.Services
             return _providerDbContext.Tags.Where(currentTag => currentTag.Value == tag).FirstOrDefault();
         }
 
-        public Provider Update(Provider newProvider)
+        public ProviderDb Update(ProviderDb newProviderDb)
         {
-            Provider dbProvider = _providerDbContext.Providers.Where(provider => provider.Id == newProvider.Id).FirstOrDefault();
-            if (dbProvider == null)
+            ProviderDb dbProviderDb = _providerDbContext.Providers.Where(provider => provider.Id == newProviderDb.Id).FirstOrDefault();
+            if (dbProviderDb == null)
             {
                 var id = Guid.NewGuid().ToString();
-                newProvider.Id = id;
-                _providerDbContext.Add(newProvider);
+                newProviderDb.Id = id;
+                _providerDbContext.Add(newProviderDb);
             }
             else
             {
                 _providerDbContext.ChangeTracker.Clear();
-                _providerDbContext.Update(newProvider);
+                _providerDbContext.Update(newProviderDb);
             }
             _providerDbContext.SaveChanges();
-            return newProvider;
+            return newProviderDb;
         }
     }
 }

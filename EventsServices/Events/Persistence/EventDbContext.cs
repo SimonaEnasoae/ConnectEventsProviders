@@ -9,7 +9,7 @@ namespace Events.Persistence
 {
     public class EventDbContext : DbContext
     {
-        public DbSet<Event> Events { get; set; }
+        public DbSet<EventDb> Events { get; set; }
         public DbSet<Tag> Tags { get; set; }
 
 
@@ -23,26 +23,7 @@ namespace Events.Persistence
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Tag>().ToTable("Tag");
-            builder.Entity<Event>().ToTable("Event");
-
-
-            //builder.Entity<Event>()
-            //    .HasMany(p => p.Tags)
-            //    .WithMany(p => p.Events)
-            //    .UsingEntity<Dictionary<string, object>>(
-            //        "EventTag",
-            //        j => j
-            //            .HasOne<Tag>()
-            //            .WithMany()
-            //            .HasForeignKey("TagsId")
-            //            .HasConstraintName("FK_EventTag_Tags_TagsId")
-            //            .OnDelete(DeleteBehavior.Cascade),
-            //        j => j
-            //            .HasOne<Event>()
-            //            .WithMany()
-            //            .HasForeignKey("EventsId")
-            //            .HasConstraintName("FK_EventTag_Events_EventsId")
-            //            .OnDelete(DeleteBehavior.ClientCascade));
+            builder.Entity<EventDb>().ToTable("Event");
 
             builder.Entity<EventTag>()
                  .HasKey(t => new { t.EventId, t.TagId });
@@ -59,19 +40,19 @@ namespace Events.Persistence
 
         }
 
-        public IEnumerable<Event> GetAllByOrganiser(string organiserId)
+        public IEnumerable<EventDb> GetAllByOrganiser(string organiserId)
         {
             return Events.Where(ev => ev.OrganiserId == organiserId).Include(order => order.EventTags)
                               .ThenInclude(orderProducts => orderProducts.Tag);
         }
 
-        public Event GetEventById(string id)
+        public EventDb GetEventById(string id)
         {
             return Events.Where(ev => ev.Id == id).Include(order => order.EventTags).
                 ThenInclude(orderProducts => orderProducts.Tag).FirstOrDefault();
         }
 
-        public IEnumerable<Event> GetAll()
+        public IEnumerable<EventDb> GetAll()
         {
             return Events.Include(order => order.EventTags)
                               .ThenInclude(orderProducts => orderProducts.Tag);

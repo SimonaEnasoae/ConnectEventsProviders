@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Providers.Models
 {
-    public class Provider
+    public class ProviderDb
     {
         public string Id { get; set; }
 

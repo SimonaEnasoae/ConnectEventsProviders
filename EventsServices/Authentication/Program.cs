@@ -11,6 +11,7 @@ using System.IO;
 using Microsoft.Extensions.DependencyInjection;
 using System.Security.Authentication;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using System.Net;
 
 string Namespace = typeof(Startup).Namespace;
 
@@ -64,13 +65,31 @@ Serilog.ILogger CreateSerilogLogger(IConfiguration configuration)
 }
 
 IWebHost BuildWebHost(IConfiguration configuration, string[] args) =>
+#pragma warning disable CS0618 // Type or member is obsolete
     WebHost.CreateDefaultBuilder(args)
+            .ConfigureKestrel(options =>
+            {
 
+                //options.Listen(IPAddress.Any, 80, listenOptions =>
+                options.Listen(IPAddress.Any, 5001, listenOptions =>
+                {
+                    listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
+                    listenOptions.UseHttps();
+                });
+
+                //options.Listen(IPAddress.Any, 49154, listenOptions =>
+                options.Listen(IPAddress.Any, 5000, listenOptions =>
+                {
+                    listenOptions.Protocols = HttpProtocols.Http2;
+                });
+
+            })
            .CaptureStartupErrors(false)
            .ConfigureAppConfiguration(x => x.AddConfiguration(configuration))
            .UseStartup<Startup>()
            .UseContentRoot(Directory.GetCurrentDirectory())
            .UseSerilog()
+#pragma warning restore CS0618 // Type or member is obsolete
            .Build();
 
 IConfiguration GetConfiguration()

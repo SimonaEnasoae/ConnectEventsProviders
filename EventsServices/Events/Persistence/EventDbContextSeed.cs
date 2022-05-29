@@ -50,7 +50,7 @@ namespace Events.Persistence
             return tags;
         }
 
-        IEnumerable<Event> CreateEvents(IEnumerable<Tag> tags, string csvFileEvents)
+        IEnumerable<EventDb> CreateEvents(IEnumerable<Tag> tags, string csvFileEvents)
         {
             if (!File.Exists(csvFileEvents))
             {
@@ -66,7 +66,7 @@ namespace Events.Persistence
                         .Where(x => x != null);
         }
 
-        private Event CreateEvent(string[] column, string[] csvheaders, IEnumerable<Tag> tags)
+        private EventDb CreateEvent(string[] column, string[] csvheaders, IEnumerable<Tag> tags)
         {
             var id = column[Array.IndexOf(csvheaders, "Id")].Trim('"').Trim();
             List<EventTag> eventTags = new List<EventTag>();
@@ -75,7 +75,7 @@ namespace Events.Persistence
                 eventTags.Add(new EventTag() { EventId = id, TagId = tag.Id });
             }
           
-            var newEvent = new Event() {
+            var newEvent = new EventDb() {
                 Id = id,
                 Title = column[Array.IndexOf(csvheaders, "title")].Trim('"').Trim(),
                 Description = "Lorem ipsum dolort sem. ",

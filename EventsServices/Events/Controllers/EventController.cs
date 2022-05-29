@@ -24,7 +24,7 @@ namespace Events.Controllers
         public EventsPaginationResponse GetAsync([FromQuery] string organiserId ="", int pageSize = 9, [FromQuery] int pageIndex = 0)
         {
             //List<EventResponse> events = new List<EventResponse>();
-            var events = Enumerable.Empty<Event>();
+            var events = Enumerable.Empty<EventDb>();
             if (organiserId == "" || organiserId == null)
             {
                 events = _eventDbContext.GetAll();
@@ -40,7 +40,7 @@ namespace Events.Controllers
            .Take(pageSize);
 
             var eventResponses = new List<EventResponse>();
-            foreach (Event currentEvent in eventsOnpage)
+            foreach (EventDb currentEvent in eventsOnpage)
             {
                 EventResponse eventResponse = new EventResponse(currentEvent);
                 eventResponse.Image = System.IO.File.ReadAllBytes(currentEvent.PictureUri);
@@ -74,7 +74,7 @@ namespace Events.Controllers
                 eventTags.Add(new EventTag() { EventId = id, TagId = dbTag.Id });
             }
 
-            var newEvent = new Event() {
+            var newEvent = new EventDb() {
                 Id = id,
                 Title = eventModel.Title,
                 Description = eventModel.Description,
@@ -99,7 +99,7 @@ namespace Events.Controllers
             string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", file.FileName);
             using (Stream stream =new FileStream(path, FileMode.Create))
             {
-                Event dbEvent = _eventDbContext.Events.Where(eventModel => eventModel.Id == file.EventId).FirstOrDefault();
+                EventDb dbEvent = _eventDbContext.Events.Where(eventModel => eventModel.Id == file.EventId).FirstOrDefault();
                 dbEvent.PictureUri = path;
                 _eventDbContext.Update(dbEvent);
                 _eventDbContext.SaveChanges();

@@ -49,8 +49,9 @@ const CreateEvent = () => {
   };
   async function handleSubmit(e) {
     e.preventDefault();
-    var newEvent = { ...event, tags: selectedTags, organiserId: user?.Id };
+    var newEvent = { ...event, Tags: selectedTags, organiserId: user?.Id };
     saveEvent(newEvent).then((eventObject) => {
+      console.log(eventObject);
       uploadFile(eventObject.id);
     });
   }

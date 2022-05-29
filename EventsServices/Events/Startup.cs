@@ -43,7 +43,12 @@ namespace Events
                    }));
 
             services.AddControllers();
-            services.AddGrpc();
+            services.AddGrpc(options =>
+            {
+                options.EnableDetailedErrors = true;
+                options.MaxReceiveMessageSize = 20 * 1024 * 1024; // 2 MB
+                options.MaxSendMessageSize = 50 * 1024 * 1024; // 5 MB
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Events", Version = "v1" });

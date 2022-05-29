@@ -63,6 +63,7 @@ const UpdateProfile = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    console.log(provider);
     updateProfile(provider).then((eventObject) => {
       if (file != "") {
         uploadFile(eventObject.id);
@@ -73,7 +74,6 @@ const UpdateProfile = () => {
   }
 
   function updateSelectedTags(e) {
-    console.log(e.target.id);
     setProvider({
       ...provider,
       tag: e.target.id,

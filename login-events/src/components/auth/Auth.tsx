@@ -35,7 +35,7 @@ const Auth: FC = () => {
     // dispatch(setUser(data));
     // dispatch(setAuthState(true));
 
-    fetch("https://localhost:5001/api/Auth/login ", {
+    fetch("https://localhost:5009/api/auth/login ", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),

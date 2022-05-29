@@ -6,6 +6,10 @@ package ProviderApi;
 
 service Provider {
 	rpc GetProviderById (ProviderRequest) returns (ProviderResponse) {}
+	rpc GetProviders (ProvidersRequest) returns (ProvidersPagination){}
+	rpc UpdateProvider(ProviderResponse) returns(ProviderResponse){}
+	rpc UpdatePicture(ProviderPictureRequest) returns(ProviderPictureResponse){}
+
 }
 
 message ProviderRequest {
@@ -19,4 +23,26 @@ message ProviderResponse {
 	string location = 4;
 	bytes image = 5;
 	string tag = 6;
+}
+
+message ProvidersRequest {
+	string id = 1;
+	int32 pageSize = 3;
+	int32 pageIndex = 4;
+}
+
+message ProvidersPagination {
+	int32 totalProviders = 1;
+	int32 totalPages = 2;
+	repeated ProviderResponse data = 3;
+}
+
+message ProviderPictureRequest {
+	string id = 1;
+	string fileName = 2;
+	bytes image = 3;
+}
+
+message ProviderPictureResponse {
+	bool status = 1;
 }

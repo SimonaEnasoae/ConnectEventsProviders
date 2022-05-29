@@ -8,10 +8,20 @@ package EventApi;
 
 service Event {
 	rpc GetEventById (EventRequest) returns (EventResponse) {}
+	rpc GetEvents (EventsRequest) returns (EventPagination){}
+	rpc SaveEvent(EventResponse) returns(EventResponse){}
+	rpc SavePicture(EventPictureRequest) returns(EventPictureResponse){}
 }
 
 message EventRequest {
 	string id = 1;
+}
+
+message EventsRequest {
+	string id = 1;
+	string organiserId = 2;
+	int32 pageSize = 3;
+	int32 pageIndex = 4;
 }
 
 message Tag {
@@ -29,4 +39,20 @@ message EventResponse {
 	string organiserId = 7;
 	bytes image = 8;
 	repeated Tag tags = 9;
+}
+
+message EventPagination {
+	int32 totalEvents = 1;
+	int32 totalPages = 2;
+	repeated EventResponse data = 3;
+}
+
+message EventPictureRequest {
+	string id = 1;
+	string fileName = 2;
+	bytes image = 3;
+}
+
+message EventPictureResponse {
+	bool status = 1;
 }

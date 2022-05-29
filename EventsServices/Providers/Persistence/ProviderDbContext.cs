@@ -10,7 +10,7 @@ namespace Providers.Persistence
     public class ProviderDbContext : DbContext
     {
         public DbSet<Tag> Tags { get; set; }
-        public DbSet<Provider> Providers { get; set; }
+        public DbSet<ProviderDb> Providers { get; set; }
 
 
         public ProviderDbContext(DbContextOptions<ProviderDbContext> options)
@@ -23,17 +23,17 @@ namespace Providers.Persistence
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Tag>().ToTable("Tag");
-            builder.Entity<Provider>().ToTable("Provider");
+            builder.Entity<ProviderDb>().ToTable("Provider");
 
         }
 
-        public IEnumerable<Provider> GetAll()
+        public IEnumerable<ProviderDb> GetAll()
         {
             return Providers.Include(provider => provider.Tag);
         }
 
 
-        public Provider GetProvider(string providerId)
+        public ProviderDb GetProvider(string providerId)
         {
             return Providers.Include(provider => provider.Tag).FirstOrDefault(provider => provider.Id == providerId);
         }

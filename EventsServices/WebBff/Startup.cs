@@ -9,6 +9,7 @@ using WebBff.Services;
 using GrpcRequest;
 using GrpcEvent;
 using GrpcProvider;
+using GrpcAuth;
 
 namespace WebBff
 {
@@ -37,6 +38,8 @@ namespace WebBff
             services.AddScoped<IRequestService, RequestService>();
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<IProviderService, ProviderService>();
+            services.AddScoped<IAuthService, AuthService>();
+
 
             AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
             AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2Support", true);
@@ -60,6 +63,13 @@ namespace WebBff
                 //var basketApi = services.GetRequiredService<IOptions<UrlConfig>>().Value.GrpcBasket;
                 //options.Address = new Uri("http://192.168.0.87:49155");
                 options.Address = new Uri("http://localhost:5004");
+            });
+
+            services.AddGrpcClient<Auth.AuthClient>((services, options) =>
+            {
+                //var basketApi = services.GetRequiredService<IOptions<UrlConfig>>().Value.GrpcBasket;
+                //options.Address = new Uri("http://192.168.0.87:49155");
+                options.Address = new Uri("http://localhost:5000");
             });
             //.AddInterceptor<GrpcExceptionInterceptor>();
         }

@@ -1,10 +1,14 @@
-﻿using GrpcProvider;
+﻿using Google.Protobuf;
+using GrpcEvent;
+using GrpcProvider;
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WebBff.Controllers.Responses;
+using WebBff.Controllers.Responses.Providers;
 
 namespace WebBff.Services
 {
@@ -17,10 +21,41 @@ namespace WebBff.Services
             _providerClient = providerClient;
         }
 
-        public async Task<Controllers.Responses.Provider> GetProviderByIdAsync(string id)
+        public async Task<ProviderModel> GetProviderByIdAsync(string id)
         {
             var provider = await _providerClient.GetProviderByIdAsync(new ProviderRequest() { Id = id });
-            return new Controllers.Responses.Provider(provider);
+            return new ProviderModel(provider);
+        }
+
+        async public Task<ProviderModel> UpdateProvider(ProviderModel provider)
+        {
+            var request = new ProviderResponse() {
+                Id = provider.Id,
+                Title = provider.Title,
+                Description = provider.Description,
+                Location = provider.Location,
+                Tag = provider.Tag,
+            };
+           
+            var eventObj = await _providerClient.UpdateProviderAsync(request);
+
+
+            return new ProviderModel(eventObj);
+        }
+
+        async public Task<bool> UpdatePicture(FileModel file)
+        {
+            using (var ms = new MemoryStream())
+            {
+                file.FormFile.CopyTo(ms);
+
+                var response = await _providerClient.UpdatePictureAsync(new ProviderPictureRequest() {
+                    Id = file.ProviderId,
+                    FileName = file.FileName,
+                    Image = ByteString.CopyFrom(ms.ToArray())
+                });
+                return response.Status;
+            }
         }
     }
 }

@@ -35,6 +35,8 @@ export const columns = [
   },
 ];
 export const UrlEventsBase = "https://localhost:5003/api/events";
+export const UrlUpdateEventsBase = "https://localhost:5009/api/events";
+
 export const formatRawData = (rawData) =>
   rawData.map((info) => ({
     ...info,
@@ -57,18 +59,19 @@ export const getEvents = async (
 };
 
 export const saveEvent = async (event1) => {
-  const response = await fetch(UrlEventsBase, {
+  const response = await fetch(UrlUpdateEventsBase, {
     method: "POST",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify(event1),
     // body: JSON.stringify(event1)
   });
   const data = await response.json();
+  console.log(data);
   return data;
 };
 
 export const savePictureEvent = async (formData) => {
-  fetch(`${UrlEventsBase}/file`, {
+  fetch(`${UrlUpdateEventsBase}/file`, {
     method: "POST",
     body: formData,
   })
@@ -78,8 +81,8 @@ export const savePictureEvent = async (formData) => {
     });
 };
 
-export const getImage = async () => {
-  fetch("http://localhost:5003/api/events/pic").then((response) =>
-    response.json()
-  );
-};
+// export const getImage = async () => {
+//   fetch("http://localhost:5003/api/events/pic").then((response) =>
+//     response.json()
+//   );
+// };

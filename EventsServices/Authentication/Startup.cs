@@ -11,6 +11,8 @@ using System.Reflection;
 using System;
 using Microsoft.EntityFrameworkCore;
 using Authentication.Services;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace Authentication
 {
@@ -41,6 +43,12 @@ namespace Authentication
             //services.Configure<AppSettings>(Configuration);
 
             services.AddControllers();
+            services.AddGrpc(options =>
+            {
+                options.EnableDetailedErrors = true;
+                options.MaxReceiveMessageSize = 20 * 1024 * 1024; // 2 MB
+                options.MaxSendMessageSize = 50 * 1024 * 1024; // 5 MB
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Authentication", Version = "v1" });
@@ -69,7 +77,23 @@ namespace Authentication
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapGrpcService<Grpc.AuthService>();
+                endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllers();
+                endpoints.MapGet("/_proto/", async ctx =>
+                {
+                    ctx.Response.ContentType = "text/plain";
+                    using var fs = new FileStream(Path.Combine(env.ContentRootPath, "Proto", "auth.proto"), FileMode.Open, FileAccess.Read);
+                    using var sr = new StreamReader(fs);
+                    while (!sr.EndOfStream)
+                    {
+                        var line = await sr.ReadLineAsync();
+                        if (line != "/* >>" || line != "<< */")
+                        {
+                            await ctx.Response.WriteAsync(line);
+                        }
+                    }
+                });
             });
         }
     }

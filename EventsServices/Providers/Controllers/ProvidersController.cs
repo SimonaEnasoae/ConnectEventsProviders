@@ -30,7 +30,7 @@ namespace Providers.Controllers
            .Take(pageSize);
 
             var providersResponse = new List<ProviderResponse>();
-            foreach (Provider currentProvider in providersOnpage)
+            foreach (ProviderDb currentProvider in providersOnpage)
             {
                 ProviderResponse providerResponse = new ProviderResponse(currentProvider);
                 providerResponse.Image = System.IO.File.ReadAllBytes(currentProvider.PictureUri);
@@ -76,7 +76,7 @@ namespace Providers.Controllers
         {
             Tag dbTag = _providerService.getTagByName(provider.Tag);
 
-            var newProvider = new Provider() {
+            var newProvider = new ProviderDb() {
                 Title = provider.Title,
                 Description = provider.Description,
                 Tag = dbTag,
@@ -86,8 +86,8 @@ namespace Providers.Controllers
             };
 
             ProviderResponse eventResponse = new ProviderResponse(newProvider);
-            Provider providerDb = _providerService.Update(newProvider);
-            eventResponse.Id = providerDb.Id;
+            ProviderDb providerDbDb = _providerService.Update(newProvider);
+            eventResponse.Id = providerDbDb.Id;
             return eventResponse;
         }
 
@@ -98,9 +98,9 @@ namespace Providers.Controllers
             string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", file.FileName);
             using (Stream stream = new FileStream(path, FileMode.Create))
             {
-                Provider dbProvider = _providerService.GetProvider(file.ProviderId);
-                dbProvider.PictureUri = path;
-                _providerService.Update(dbProvider);
+                ProviderDb dbProviderDb = _providerService.GetProvider(file.ProviderId);
+                dbProviderDb.PictureUri = path;
+                _providerService.Update(dbProviderDb);
                 file.FormFile.CopyTo(stream);
             }
             return true;

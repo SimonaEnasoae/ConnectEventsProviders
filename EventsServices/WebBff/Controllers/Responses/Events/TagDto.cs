@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebBff.Controllers.Responses
+namespace WebBff.Controllers.Responses.Events
 {
     public class TagDto
     {

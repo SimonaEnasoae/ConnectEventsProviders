@@ -8,7 +8,7 @@ namespace Events.Model
     public class EventTag
     {
         public string EventId { get; set; }
-        public Event Event { get; set; }
+        public EventDb Event { get; set; }
 
         public string TagId { get; set; }
         public Tag Tag { get; set; }

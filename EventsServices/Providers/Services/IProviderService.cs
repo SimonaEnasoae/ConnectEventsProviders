@@ -10,9 +10,9 @@ namespace Providers.Services
 {
     public interface IProviderService 
     {
-        IEnumerable<Provider> GetAll();
-        Provider Update(Provider newProvider);
-        Provider GetProvider(string providerId);
+        IEnumerable<ProviderDb> GetAll();
+        ProviderDb Update(ProviderDb newProviderDb);
+        ProviderDb GetProvider(string providerId);
         Tag getTagByName(string tag);
     }
 }

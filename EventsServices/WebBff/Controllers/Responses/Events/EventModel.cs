@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebBff.Controllers.Responses
+namespace WebBff.Controllers.Responses.Events
 {
     public class EventModel
     {
@@ -18,7 +18,7 @@ namespace WebBff.Controllers.Responses
 
         public DateTime StartDate { get; set; }
 
-        public IEnumerable<TagDto> Tags { get; init; }
+        public IEnumerable<string>  Tags { get; init; }
 
         public Byte[] Image { get; set; }
 
@@ -32,8 +32,9 @@ namespace WebBff.Controllers.Responses
             EndDate = eventObj.EndDate.ToDateTime();
             StartDate = eventObj.StartDate.ToDateTime();
             Image = eventObj.Image.ToByteArray();
-            Tags = eventObj.Tags.Select(tag => new TagDto() { Id = tag.Id, Value = tag.Value }).ToList();
+            Tags = eventObj.Tags.Select(tag => tag.Value).ToList();
         }
 
+        public EventModel(){}
     }
 }

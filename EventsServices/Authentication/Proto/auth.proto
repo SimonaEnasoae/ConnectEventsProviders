@@ -1,0 +1,23 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "GrpcAuth";
+
+package AuthApi;
+
+service Auth {
+	rpc Login (LoginRequest) returns (LoginResponse) {}
+}
+
+message LoginRequest {
+	string id = 1;
+	string username = 3;
+	string password = 4;
+}
+
+message LoginResponse {
+	bool status = 1;
+	string token = 2;
+	string type = 3;
+	string userId = 4;
+}
+

@@ -23,6 +23,7 @@ export const columns = [
   },
 ];
 export const UrlProvidersBase = "https://localhost:5005/api/";
+export const UrlUpdateProvidersBase = "https://localhost:5009/api/";
 
 export const getProviders = async (pageSize = 9, pageIndex = 0) => {
   const response = await fetch(
@@ -34,7 +35,7 @@ export const getProviders = async (pageSize = 9, pageIndex = 0) => {
 };
 
 export const updateProfile = async (provider) => {
-  const response = await fetch(`${UrlProvidersBase}providers`, {
+  const response = await fetch(`${UrlUpdateProvidersBase}providers`, {
     method: "POST",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify(provider),
@@ -45,7 +46,7 @@ export const updateProfile = async (provider) => {
 };
 
 export const savePictureProvider = async (formData) => {
-  fetch(`${UrlProvidersBase}providers/file`, {
+  fetch(`${UrlUpdateProvidersBase}providers/file`, {
     method: "POST",
     body: formData,
   })

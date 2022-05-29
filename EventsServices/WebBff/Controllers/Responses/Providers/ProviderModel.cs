@@ -1,9 +1,9 @@
 ﻿using GrpcProvider;
 using System;
 
-namespace WebBff.Controllers.Responses
+namespace WebBff.Controllers.Responses.Providers
 {
-    public class Provider
+    public class ProviderModel
     {
         private ProviderResponse provider;
 
@@ -16,9 +16,9 @@ namespace WebBff.Controllers.Responses
 
         public Byte[] Image { get; set; }
 
-        public Provider() { }
+        public ProviderModel() { }
 
-        public Provider(ProviderResponse baseProvider)
+        public ProviderModel(ProviderResponse baseProvider)
         {
             Id = baseProvider.Id;
             Title = baseProvider.Title;

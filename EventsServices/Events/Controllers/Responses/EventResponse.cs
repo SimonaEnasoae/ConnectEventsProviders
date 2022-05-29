@@ -20,7 +20,7 @@ namespace Events.Controllers.Responses
         public Byte[] Image { get; set; }
         public string OrganiserId { get; init; }
 
-        public EventResponse(Event baseEvent)
+        public EventResponse(EventDb baseEvent)
         {
             this.Id = baseEvent.Id;
             this.Title = baseEvent.Title;

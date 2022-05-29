@@ -37,6 +37,7 @@
 		<Protobuf Include="Proto\request.proto" GrpcServices="Client" />
 		<Protobuf Include="Proto\event.proto" GrpcServices="Client" />
 		<Protobuf Include="Proto\provider.proto" GrpcServices="Client" />
+		<Protobuf Include="Proto\auth.proto" GrpcServices="Client" />
 
 	</ItemGroup>
 </Project>

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Events.Persistence
 {
-    public class EventTypeConfiguration : IEntityTypeConfiguration<Event>
+    public class EventTypeConfiguration : IEntityTypeConfiguration<EventDb>
     {
-        public void Configure(EntityTypeBuilder<Event> builder)
+        public void Configure(EntityTypeBuilder<EventDb> builder)
         {
             //builder.Property(ci => ci.EndDate)
             //.UseIdentityColumn("end_date");

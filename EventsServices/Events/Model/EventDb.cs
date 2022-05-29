@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Events.Model
 {
-    public class Event
+    public class EventDb
     {
         public string Id { get; init; }
 

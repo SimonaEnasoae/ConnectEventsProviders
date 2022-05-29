@@ -1,8 +1,6 @@
 ﻿using GrpcRequest;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using WebBff.Controllers.Responses.Events;
+using WebBff.Controllers.Responses.Providers;
 
 namespace WebBff.Controllers.Responses
 {
@@ -14,6 +12,6 @@ namespace WebBff.Controllers.Responses
         }
 
         public EventModel EventModel { get; set; }
-        public Provider Provider { get; internal set; }
+        public ProviderModel Provider { get; internal set; }
     }
 }

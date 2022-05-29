@@ -50,7 +50,7 @@ namespace Providers.Persistence
             return tags;
         }
 
-        IEnumerable<Provider> CreateProviders(IEnumerable<Tag> tags, string csvFileEvents)
+        IEnumerable<ProviderDb> CreateProviders(IEnumerable<Tag> tags, string csvFileEvents)
         {
             if (!File.Exists(csvFileEvents))
             {
@@ -66,11 +66,11 @@ namespace Providers.Persistence
                         .Where(x => x != null);
         }
 
-        private Provider CreateProvider(string[] column, string[] csvheaders, IEnumerable<Tag> tags)
+        private ProviderDb CreateProvider(string[] column, string[] csvheaders, IEnumerable<Tag> tags)
         {
             var tagName = column[Array.IndexOf(csvheaders, "Tag")].Trim('"').Trim();
             var tag = tags.Where(tag => tag.Value == tagName).FirstOrDefault();
-            var newProvider = new Provider() {
+            var newProvider = new ProviderDb() {
                 Id = column[Array.IndexOf(csvheaders, "id")].Trim('"').Trim(),
                 Title = column[Array.IndexOf(csvheaders, "title")].Trim('"').Trim(),
                 Description = "Lorem ipsum dolort sem. ",
