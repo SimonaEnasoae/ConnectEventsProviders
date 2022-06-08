@@ -22,22 +22,5 @@ namespace Authentication.Models
 
         public UserType Type { get; set; }
 
-        public override bool Equals(object obj)
-        {
-            return base.Equals(obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
-        //public override string ToString()
-        //{
-        //    return "Username: " + Username.ToString() +
-        //        "\nPassword: " + Password.ToString() +
-        //        "\nId: " + Id.ToString() +
-        //        "\nType: " + Type.ToString() +"\n";
-        //}
     }
 }

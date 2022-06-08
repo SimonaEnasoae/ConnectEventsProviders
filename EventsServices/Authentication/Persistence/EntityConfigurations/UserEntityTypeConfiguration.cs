@@ -8,21 +8,6 @@ namespace Authentication.Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<UserAuth> builder)
         {
-            //builder.ToTable("Users");
-
-            //builder.HasKey(user => user.Id);
-
-            //builder.Property(user => user.Id)
-            //    .UseHiLo("user_id")
-            //    .IsRequired();
-
-            //builder.Property(user => user.Username)
-            //    .IsRequired()
-            //    .HasMaxLength(100);
-
-            //builder.Property(user => user.Password)
-            //   .IsRequired()
-            //   .HasMaxLength(100);
         }
     }
 

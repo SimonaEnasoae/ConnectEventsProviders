@@ -12,6 +12,5 @@ namespace WebBff.Services
         Task<ProviderModel> GetProviderByIdAsync(string id);
         Task<ProviderModel> UpdateProvider(ProviderModel provider);
         Task<bool> UpdatePicture(FileModel file);
-
     }
 }

@@ -57,5 +57,10 @@ namespace WebBff.Services
                 return response.Status;
             }
         }
+
+        public Task<ProviderPaginationResponse> GetProvidersAsync(int pageSize, int pageIndex)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

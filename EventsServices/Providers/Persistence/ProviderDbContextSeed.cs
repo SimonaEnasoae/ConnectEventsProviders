@@ -12,7 +12,6 @@ namespace Providers.Persistence
     {
         public async Task SeedAsync(ProviderDbContext context)
         {
-            //context.Database.EnsureCreated();
             if (!context.Providers.Any())
             {
                 IEnumerable<Tag> tags = CreateTags();

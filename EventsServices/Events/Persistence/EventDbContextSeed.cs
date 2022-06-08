@@ -16,7 +16,7 @@ namespace Events.Persistence
             if (!context.Events.Any())
             {
                 IEnumerable<Tag> tags = CreateTags();
-                var events = CreateEvents(tags, @"C:\Projects\Extra\ConnectEventsProviders\EventsServices\Events\Persistence\eventsLocal.csv");
+                var events = CreateEvents(tags, @".\Persistence\eventsLocal.csv");
                 //var events = CreateEvents(tags, @"/app/Persistence/events.csv");
                 context.Tags.AddRange(tags);
                 context.Events.AddRange(events);

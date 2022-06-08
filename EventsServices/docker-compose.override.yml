@@ -6,9 +6,27 @@ services:
             - ASPNETCORE_ENVIRONMENT=Development
             - ASPNETCORE_URLS=http://0.0.0.0:80
         ports: 
-            - "5101:80"
-            - "5101:81"
+            - "5000:80"
+            - "5001:81"
 
-        #volumes:
-        #- ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-        #- ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    events:
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_URLS=http://0.0.0.0:80
+        ports: 
+            - "5002:80"
+            - "5003:81"
+    providers:
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_URLS=http://0.0.0.0:80
+        ports: 
+            - "5004:80"
+            - "5005:81"
+    requests:
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_URLS=http://0.0.0.0:80
+        ports: 
+            - "5006:80"
+            - "5007:81"

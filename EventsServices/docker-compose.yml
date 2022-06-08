@@ -2,20 +2,37 @@ version: '3.4'
 
 services:  
   authentification:
-    container_name: api_container
+    container_name: authentification_container
     image: ${DOCKER_REGISTRY-}api
     build:
       context: .
+      dockerfile: C:\Projects\Extra\ConnectEventsProviders\EventsServices\Authetication\Dockerfile
+
+  events:
+    container_name: events_container
+    image: ${DOCKER_REGISTRY-}events
+    build:
+      context: .
       dockerfile: C:\Projects\Extra\ConnectEventsProviders\EventsServices\Events\Dockerfile
+    depends_on:
+      - authentification
 
+  providers:
+    container_name: providers_container
+    image: ${DOCKER_REGISTRY-}providers
+    build:
+      context: .
+      dockerfile: C:\Projects\Extra\ConnectEventsProviders\EventsServices\Providers\Dockerfile
+    depends_on:
+      - authentification
 
-  #events:
-  #  container_name: events_container
-  #  image: ${DOCKER_REGISTRY-}events
-  #  build:
-  #    context: .
-  #    dockerfile: C:\Projects\Extra\ConnectEventsProviders\EventsServices\Events\Dockerfile
-  #  ports:
-  #    - "49256:443"
-
-  
+  request:
+    container_name: requests_container
+    image: ${DOCKER_REGISTRY-}requets
+    build:
+      context: .
+      dockerfile: C:\Projects\Extra\ConnectEventsProviders\EventsServices\Requests\Dockerfile
+    depends_on:
+      - authentification
+      - events
+      - providers

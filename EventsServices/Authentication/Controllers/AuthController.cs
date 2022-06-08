@@ -41,6 +41,5 @@ namespace Authentication.Controllers
             return loginResponse;
         }
 
-
     }
 }

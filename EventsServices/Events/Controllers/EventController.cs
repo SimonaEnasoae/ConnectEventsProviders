@@ -23,7 +23,6 @@ namespace Events.Controllers
         [HttpGet]
         public EventsPaginationResponse GetAsync([FromQuery] string organiserId ="", int pageSize = 9, [FromQuery] int pageIndex = 0)
         {
-            //List<EventResponse> events = new List<EventResponse>();
             var events = Enumerable.Empty<EventDb>();
             if (organiserId == "" || organiserId == null)
             {
@@ -52,14 +51,6 @@ namespace Events.Controllers
                 Data = eventResponses
             };
             return eventPagination;
-        }
-
-        [Route("pic")]
-        [HttpGet]
-        public IActionResult GetPicture()
-        {
-            Byte[] b = System.IO.File.ReadAllBytes(@"C:\Users\Lenovo\source\repos\EventsServices\Events\Pictures\11.png");   // You can use your own method over here.         
-            return File(b, "image/png");
         }
 
         [HttpPost]

@@ -20,6 +20,14 @@ namespace WebBff.Controllers
             _providerService = providerService;
         }
 
+        [HttpGet]
+        async public Task<ProviderPaginationResponse> GetAsync([FromQuery] int pageSize = 9, int pageIndex = 0)
+        {
+
+            return await (_providerService).GetProvidersAsync(pageSize, pageIndex);
+        }
+
+
         [HttpPost]
         public async Task<ProviderModel> PostAsync([FromBody] ProviderModel provider)
         {

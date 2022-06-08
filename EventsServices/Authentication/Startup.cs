@@ -25,11 +25,9 @@ namespace Authentication
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            // Add framework services.
             services.AddDbContext<UserDbContext>(options =>
             options.UseSqlServer(Configuration["ConnectionString"],
                     sqlServerOptionsAction: sqlOptions =>
@@ -40,7 +38,6 @@ namespace Authentication
 
             services.AddTransient<IAuthService, AuthService>();
 
-            //services.Configure<AppSettings>(Configuration);
 
             services.AddControllers();
             services.AddGrpc(options =>
@@ -55,7 +52,6 @@ namespace Authentication
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserDbContext db)
         {
             if (env.IsDevelopment())
@@ -69,12 +65,7 @@ namespace Authentication
                      .AllowAnyMethod()
                      .AllowAnyHeader());
 
-            //app.UseHttpsRedirection();
-
             app.UseRouting();
-
-            //app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<Grpc.AuthService>();
