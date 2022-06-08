@@ -32,5 +32,15 @@ namespace WebBff.Services
                 Type = response.Type
             };
         }
+        public async Task<LogoutResponse> Logout(UserAuth user)
+        {
+            var response = await _authClient.LogoutAsync(new LogoutRequest() {
+                Username = user.Username,
+            });
+
+            return new LogoutResponse() {
+                Status = response.Status,
+            };
+        }
     }
 }

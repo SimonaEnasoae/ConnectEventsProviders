@@ -6,6 +6,7 @@ package AuthApi;
 
 service Auth {
 	rpc Login (LoginRequest) returns (LoginResponse) {}
+	rpc Logout (LogoutRequest) returns (LogoutResponse) {}
 }
 
 message LoginRequest {
@@ -21,3 +22,11 @@ message LoginResponse {
 	string userId = 4;
 }
 
+message LogoutRequest {
+	string id = 1;
+	string username = 3;
+}
+
+message LogoutResponse {
+	bool status = 1;
+}
