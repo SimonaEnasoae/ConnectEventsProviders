@@ -47,6 +47,7 @@ const CreateEvent = () => {
     savePictureEvent(formData);
     showAlert("Event Created", "success");
   };
+
   async function handleSubmit(e) {
     e.preventDefault();
     var newEvent = { ...event, Tags: selectedTags, organiserId: user?.Id };

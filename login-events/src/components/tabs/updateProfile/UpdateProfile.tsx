@@ -80,8 +80,6 @@ const UpdateProfile = () => {
     });
   }
 
-  // fetchProvider();
-
   return (
     <>
       {isLoading ? (
@@ -188,25 +186,17 @@ const UpdateProfile = () => {
                   Other
                 </label>
               </div>
-              {/* </div> */}
-
               <p>
                 <strong> Image</strong>
               </p>
 
-              <img
-                className="imgUpdateProfile"
-                // src={URL.createObjectURL(provider.image)}
-                src={imageSrc}
-              ></img>
+              <img className="imgUpdateProfile" src={imageSrc}></img>
 
               <input
                 className="imageInput"
                 type="file"
                 onChange={saveFile}
               ></input>
-              {/* <input className="uploadFileButton" type="button" value="upload" onClick={uploadFile}></input> */}
-
               <Button className="submit-button" value="submit" type="submit">
                 Update
               </Button>

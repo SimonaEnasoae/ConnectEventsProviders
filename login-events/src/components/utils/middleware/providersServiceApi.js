@@ -39,7 +39,6 @@ export const updateProfile = async (provider) => {
     method: "POST",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify(provider),
-    // body: JSON.stringify(event1)
   });
   const data = await response.json();
   return data;

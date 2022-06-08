@@ -42,7 +42,6 @@ export const formatRawData = (rawData) =>
     ...info,
     startDate: format(parseISO(info.startDate), "MM/dd/yyyy"),
     endDate: format(parseISO(info.endDate), "MM/dd/yyyy"),
-    // tags: info.tags.map(e=>e.value).join(" "),
   }));
 
 export const getEvents = async (
@@ -80,9 +79,3 @@ export const savePictureEvent = async (formData) => {
       console.log(data);
     });
 };
-
-// export const getImage = async () => {
-//   fetch("http://localhost:5003/api/events/pic").then((response) =>
-//     response.json()
-//   );
-// };

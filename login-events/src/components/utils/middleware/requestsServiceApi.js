@@ -8,7 +8,6 @@ export const createRequest = async (request) => {
     method: "POST",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify(request),
-    // body: JSON.stringify(event1)
   });
   const data = await response.json();
   return data;
@@ -51,10 +50,6 @@ export const columns = [
 export const formatRawData = (rawData) => {
   console.log(rawData);
   return rawData.map((info) => ({
-    // ...info,
-    // image: format(parseISO(info.startDate), "MM/dd/yyyy"),
-    // endDate: format(parseISO(info.endDate), "MM/dd/yyyy"),
-    // // tags: info.tags.map(e=>e.value).join(" "),
     Id: info.id,
     ImageEvent: info.eventModel.image,
     ImageProvider: info.provider.image,
@@ -63,8 +58,6 @@ export const formatRawData = (rawData) => {
     StartDate: moment.utc(info.eventModel.startDate).format("MM/DD/YYYY"),
     Status: info.status,
     Tag: info.provider.tag,
-
-    // endDate: format(parseISO(info.endDate), "MM/dd/yyyy"),
   }));
 };
 
@@ -81,7 +74,6 @@ export const declineRequest = async (request) => {
     method: "POST",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify(request),
-    // body: JSON.stringify(event1)
   });
   const data = await response.json();
   return data;

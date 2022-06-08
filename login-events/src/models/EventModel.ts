@@ -6,7 +6,5 @@ export type EventModel = {
   EndDate: Date | null;
   StartDate: Date | null;
   Tags: string[];
-  // createdAt?: string;
-  // updatedAt?: string;
   organiserId?: string;
 };

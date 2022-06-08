@@ -31,10 +31,6 @@ const Auth: FC = () => {
   const submitForm = (data: User) => {
     const path = isLogin ? "/auth/login" : "/auth/signup";
 
-    // dispatch(saveToken("token"));
-    // dispatch(setUser(data));
-    // dispatch(setAuthState(true));
-
     fetch("https://localhost:5009/api/auth/login ", {
       method: "POST",
       headers: { "Content-type": "application/json" },

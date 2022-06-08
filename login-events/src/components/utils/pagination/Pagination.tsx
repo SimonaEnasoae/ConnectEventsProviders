@@ -2,33 +2,23 @@ import React, { FC, useState, useEffect } from "react";
 import "./pagination.css";
 
 const Pagination = ({ pageChangeHandler, totalRows, rowsPerPage }) => {
-  // Calculating max number of pages
   const noOfPages = Math.ceil(totalRows / rowsPerPage);
 
-  // Creating an array with length equal to no.of pages
   const pagesArr = [...new Array(noOfPages)];
 
-  // State variable to hold the current page. This value is
-  // passed to the callback provided by the parent
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Navigation arrows enable/disable state
   const [canGoBack, setCanGoBack] = useState(false);
   const [canGoNext, setCanGoNext] = useState(true);
 
-  // These variables give the first and last record/row number
-  // with respect to the current page
   const [pageFirstRecord, setPageFirstRecord] = useState(1);
   const [pageLastRecord, setPageLastRecord] = useState(rowsPerPage);
 
-  // Onclick handlers for the butons
   const onNextPage = () => setCurrentPage(currentPage + 1);
   const onPrevPage = () => setCurrentPage(currentPage - 1);
   const onPageSelect = (pageNo: React.SetStateAction<number>) =>
     setCurrentPage(pageNo);
 
-  // Disable previous and next buttons in the first and last page
-  // respectively
   useEffect(() => {
     if (noOfPages === currentPage) {
       setCanGoNext(false);
@@ -42,14 +32,12 @@ const Pagination = ({ pageChangeHandler, totalRows, rowsPerPage }) => {
     }
   }, [noOfPages, currentPage]);
 
-  // To set the starting index of the page
   useEffect(() => {
     const skipFactor = (currentPage - 1) * rowsPerPage;
     pageChangeHandler(currentPage);
     setPageFirstRecord(skipFactor + 1);
   }, [currentPage]);
 
-  // To set the last index of the page
   useEffect(() => {
     const count = pageFirstRecord + rowsPerPage;
     setPageLastRecord(count > totalRows ? totalRows : count - 1);

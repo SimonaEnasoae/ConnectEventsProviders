@@ -69,11 +69,8 @@ const Requests: FC = () => {
 
   function displayRequest(cells: any) {
     return (
-      //   <div key={cells[0].value}>
-      // {/* {console.log(cells)} */}
       <tr key={cells[0].value}>
         <td>
-          {/* {console.log(cells)} */}
           <div className="flex-container">
             <div className="flex-child">
               <img
@@ -93,10 +90,7 @@ const Requests: FC = () => {
               ></img>
               <p>{cells[6].value}</p>
 
-              <button
-                className="btn btn-primary pendingStatus"
-                // onClick={sendRequest}
-              >
+              <button className="btn btn-primary pendingStatus">
                 {cells[7].value}
               </button>
 
