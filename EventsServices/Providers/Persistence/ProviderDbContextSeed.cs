@@ -15,8 +15,8 @@ namespace Providers.Persistence
             if (!context.Providers.Any())
             {
                 IEnumerable<Tag> tags = CreateTags();
-                //var providers = CreateProviders(tags, @"/app/Persistence/providers.csv");
-                var providers = CreateProviders(tags, @".\Persistence\providersLocal.csv");
+                var providers = CreateProviders(tags, @"/app/Persistence/providers.csv");
+                //var providers = CreateProviders(tags, @".\Persistence\providersLocal.csv");
                 context.Tags.AddRange(tags);
                 context.Providers.AddRange(providers);
             }

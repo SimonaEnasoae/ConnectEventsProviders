@@ -107,7 +107,7 @@ const Events: FC = () => {
 
   return (
     <div>
-      <div style={{ height: "80%" }}>
+      <div className={"eventsContainer"} style={{ height: "80%" }}>
         <Table
           displayEvent={displayEvent}
           columns={columns}

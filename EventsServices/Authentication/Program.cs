@@ -70,15 +70,15 @@ IWebHost BuildWebHost(IConfiguration configuration, string[] args) =>
             .ConfigureKestrel(options =>
             {
 
-                //options.Listen(IPAddress.Any, 80, listenOptions =>
-                options.Listen(IPAddress.Any, 5001, listenOptions =>
+                options.Listen(IPAddress.Any, 80, listenOptions =>
+                //options.Listen(IPAddress.Any, 5001, listenOptions =>
                 {
                     listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
-                    listenOptions.UseHttps();
+                    //listenOptions.UseHttps();
                 });
 
-                //options.Listen(IPAddress.Any, 49154, listenOptions =>
-                options.Listen(IPAddress.Any, 5000, listenOptions =>
+                options.Listen(IPAddress.Any, 443, listenOptions =>
+                //options.Listen(IPAddress.Any, 5000, listenOptions =>
                 {
                     listenOptions.Protocols = HttpProtocols.Http2;
                 });

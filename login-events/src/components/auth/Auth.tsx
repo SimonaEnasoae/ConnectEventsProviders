@@ -31,7 +31,7 @@ const Auth: FC = () => {
   const submitForm = (data: User) => {
     const path = isLogin ? "/auth/login" : "/auth/signup";
 
-    fetch("https://localhost:5009/api/auth/login ", {
+    fetch("http://localhost:5009/api/auth/login ", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),

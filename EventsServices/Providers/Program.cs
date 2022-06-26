@@ -69,16 +69,16 @@ WebHost.CreateDefaultBuilder(args)
          .ConfigureKestrel(options =>
          {
 
-             //options.Listen(IPAddress.Any, 80, listenOptions =>
-             options.Listen(IPAddress.Any, 5005, listenOptions =>
+             options.Listen(IPAddress.Any, 80, listenOptions =>
+             //options.Listen(IPAddress.Any, 5005, listenOptions =>
              {
                  listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
-                 listenOptions.UseHttps();
+                 //listenOptions.UseHttps();
 
              });
 
              //options.Listen(IPAddress.Any, 49155, listenOptions =>
-             options.Listen(IPAddress.Any, 5004, listenOptions =>
+             options.Listen(IPAddress.Any, 443, listenOptions =>
              {
                  listenOptions.Protocols = HttpProtocols.Http2;
              });

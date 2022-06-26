@@ -22,8 +22,8 @@ export const columns = [
     accessor: "image",
   },
 ];
-export const UrlProvidersBase = "https://localhost:5005/api/";
-export const UrlUpdateProvidersBase = "https://localhost:5009/api/";
+export const UrlProvidersBase = "http://localhost:5005/api/";
+export const UrlUpdateProvidersBase = "http://localhost:5009/api/";
 
 export const getProviders = async (pageSize = 9, pageIndex = 0) => {
   const response = await fetch(

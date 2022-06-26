@@ -34,8 +34,8 @@ export const columns = [
     accessor: "image",
   },
 ];
-export const UrlEventsBase = "https://localhost:5003/api/events";
-export const UrlUpdateEventsBase = "https://localhost:5009/api/events";
+export const UrlEventsBase = "http://localhost:5003/api/events";
+export const UrlUpdateEventsBase = "http://localhost:5009/api/events";
 
 export const formatRawData = (rawData) =>
   rawData.map((info) => ({

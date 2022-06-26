@@ -96,3 +96,7 @@ td {
   font-variant: small-caps;
   text-transform: capitalize;
 }
+
+.eventsContainer {
+  margin-left: 70px;
+}

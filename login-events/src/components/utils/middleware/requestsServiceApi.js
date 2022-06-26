@@ -1,7 +1,7 @@
 import { parseISO, format } from "date-fns";
 var moment = require("moment"); // require
 
-export const UrlRequestsBase = "https://localhost:5009/api/";
+export const UrlRequestsBase = "http://localhost:5009/api/";
 
 export const createRequest = async (request) => {
   const response = await fetch(`${UrlRequestsBase}requests`, {

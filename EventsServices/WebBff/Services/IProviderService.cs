@@ -10,6 +10,7 @@ namespace WebBff.Services
     public interface IProviderService
     {
         Task<ProviderModel> GetProviderByIdAsync(string id);
+        Task<ProviderPaginationResponse> GetProvidersAsync(int pageSize, int pageIndex);
         Task<ProviderModel> UpdateProvider(ProviderModel provider);
         Task<bool> UpdatePicture(FileModel file);
     }

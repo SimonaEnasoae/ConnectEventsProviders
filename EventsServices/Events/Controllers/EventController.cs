@@ -46,8 +46,8 @@ namespace Events.Controllers
                 eventResponses.Add(eventResponse);
             }
             EventsPaginationResponse eventPagination = new EventsPaginationResponse() {
-                TotalEvents = 17,
-                TotalPages = 2,
+                TotalEvents = events.Count(),
+                TotalPages = events.Count()/pageSize+1,
                 Data = eventResponses
             };
             return eventPagination;

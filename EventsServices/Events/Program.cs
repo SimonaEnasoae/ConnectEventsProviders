@@ -66,15 +66,15 @@ Serilog.ILogger CreateSerilogLogger(IConfiguration configuration)
              .ConfigureKestrel(options =>
              {
 
-                 //options.Listen(IPAddress.Any, 80, listenOptions =>
-                 options.Listen(IPAddress.Any, 5003, listenOptions =>
+                 options.Listen(IPAddress.Any, 80, listenOptions =>
+                 //options.Listen(IPAddress.Any, 5003, listenOptions =>
                  {
                      listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
-                     listenOptions.UseHttps();
+                     //listenOptions.UseHttps();
                  });
 
                  //options.Listen(IPAddress.Any, 49154, listenOptions =>
-                 options.Listen(IPAddress.Any, 5002, listenOptions =>
+                 options.Listen(IPAddress.Any, 443, listenOptions =>
                  {
                      listenOptions.Protocols = HttpProtocols.Http2;
                  });

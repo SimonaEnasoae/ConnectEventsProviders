@@ -1,0 +1,38 @@
+
+Server:
+
+-change database url appsettings.json
+
+Programs.cs
+- use                  options.Listen(IPAddress.Any, 80, listenOptions =>
+- remove                                    //listenOptions.UseHttps();
+
+EventDbContextSeed
+- update file path 
+
+Clear database events
+
+Client:
+-remove s from the url
+ 
+
+IMPORTANT
+
+Containerul are un port pe WebBff trebuie folosit acel port:     options.Address = new Uri("http://192.168.0.87:49156");
+In serviciul respectiv trebuie folosit acel port  WebHost.CreateDefaultBuilder(args)
+            WebHost.CreateDefaultBuilder(args)
+            .ConfigureKestrel(options =>
+            {
+
+                options.Listen(IPAddress.Any, 80, listenOptions =>
+                {
+                    listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
+                    //listenOptions.UseHttps();
+                });
+
+                options.Listen(IPAddress.Any, 443, listenOptions =>
+                {
+                    listenOptions.Protocols = HttpProtocols.Http2;
+                });
+
+            })
