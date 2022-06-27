@@ -15,6 +15,8 @@ namespace WebBff.Controllers.Responses.Providers
         public string Tag { get; init; }
 
         public Byte[] Image { get; set; }
+        public string Token { get; set; }
+
 
         public ProviderModel() { }
 

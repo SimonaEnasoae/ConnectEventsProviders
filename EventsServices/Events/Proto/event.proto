@@ -9,7 +9,7 @@ package EventApi;
 service Event {
 	rpc GetEventById (EventRequest) returns (EventResponse) {}
 	rpc GetEvents (EventsRequest) returns (EventPagination){}
-	rpc SaveEvent(EventResponse) returns(EventResponse){}
+	rpc SaveEvent(UpdateEventRequest) returns(EventResponse){}
 	rpc SavePicture(EventPictureRequest) returns(EventPictureResponse){}
 }
 
@@ -39,6 +39,19 @@ message EventResponse {
 	string organiserId = 7;
 	bytes image = 8;
 	repeated Tag tags = 9;
+}
+
+message UpdateEventRequest {
+	string id = 1;
+	string title = 2;
+	string description = 3;
+	string location = 4;
+	google.protobuf.Timestamp startDate = 5;
+	google.protobuf.Timestamp endDate = 6;
+	string organiserId = 7;
+	bytes image = 8;
+	repeated Tag tags = 9;
+	string token =10;
 }
 
 message EventPagination {

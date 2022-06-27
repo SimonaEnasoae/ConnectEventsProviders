@@ -31,6 +31,7 @@ const CreateEvent = () => {
   const [isActive, setActive] = useState(false);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const user = useSelector((state: RootState) => state.user.user);
+  const token = useSelector((state: RootState) => state.auth.token);
 
   const saveFile = (e) => {
     console.log(e.target.files[0]);
@@ -50,7 +51,12 @@ const CreateEvent = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    var newEvent = { ...event, Tags: selectedTags, organiserId: user?.Id };
+    var newEvent = {
+      ...event,
+      Tags: selectedTags,
+      organiserId: user?.Id,
+      Token: token,
+    };
     saveEvent(newEvent).then((eventObject) => {
       console.log(eventObject);
       uploadFile(eventObject.id);

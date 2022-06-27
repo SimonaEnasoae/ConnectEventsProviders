@@ -3,4 +3,5 @@ export type RequestModel = {
   senderId: string;
   receiverId: string;
   eventId: string;
+  token?: string | null;
 };

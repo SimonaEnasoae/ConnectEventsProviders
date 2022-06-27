@@ -11,7 +11,7 @@ namespace WebBff.Controllers.Requests
         public string SenderId { get; set; }
         public string ReceiverId { get; set; }
         public string EventId { get; set; }
-
+        public string Token { get; set; }
 
     }
 }

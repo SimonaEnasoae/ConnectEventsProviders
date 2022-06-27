@@ -50,13 +50,14 @@ namespace WebBff.Services
 
         async public Task<EventModel> SaveEvent(EventModel eventModel)
         {
-            var request = new EventResponse() {
+            var request = new UpdateEventRequest() {
                 Title = eventModel.Title,
                 Description = eventModel.Description,
                 Location = eventModel.Location,
                 OrganiserId = eventModel.OrganiserId,
                 EndDate = Timestamp.FromDateTime(eventModel.EndDate),
-                StartDate = Timestamp.FromDateTime(eventModel.StartDate)
+                StartDate = Timestamp.FromDateTime(eventModel.StartDate),
+                Token = eventModel.Token
             };
             foreach (var tag in eventModel.Tags)
             {

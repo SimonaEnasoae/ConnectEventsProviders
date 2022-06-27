@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebBff.Controllers.Requests
+namespace Authentication.Model
 {
-    public class UpdateRequest
+    public class Connection
     {
         public string Id { get; set; }
-        public int Status { get; set; }
-        public string Token { get; set; }
 
+        public string UserId { get; init; }
+        public string Token { get; init; }
     }
 }

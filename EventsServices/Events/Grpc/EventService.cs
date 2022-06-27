@@ -3,6 +3,7 @@ using Events.Model;
 using Events.Persistence;
 using Google.Protobuf;
 using Grpc.Core;
+using GrpcAuth;
 using GrpcEvent;
 using Microsoft.AspNetCore.Authorization;
 using System;
@@ -19,9 +20,11 @@ namespace Events.Grpc
     public class EventService : Event.EventBase
     {
         private readonly EventDbContext _eventDbContext;
+        private readonly Auth.AuthClient _authClient;
 
-        public EventService(EventDbContext context)
+        public EventService(EventDbContext context, Auth.AuthClient authClient)
         {
+            _authClient = authClient;
             _eventDbContext = context ?? throw new ArgumentNullException(nameof(context));
         }
 
@@ -93,32 +96,54 @@ namespace Events.Grpc
         }
 
         [AllowAnonymous]
-        override public Task<EventResponse> SaveEvent(EventResponse eventObject, ServerCallContext context)
+        override async public Task<EventResponse> SaveEvent(UpdateEventRequest request, ServerCallContext context)
         {
             var eventTags = new List<EventTag>();
             var id = Guid.NewGuid().ToString();
 
-            foreach (Tag tag in eventObject.Tags)
+            var checkActionResponse = await _authClient.CheckActionAsync(new CheckActionRequest() {
+                Id = "id",
+                Token = request.Token
+            });
+
+            if (checkActionResponse.Status)
             {
-                var tagDb = _eventDbContext.Tags.Where(tagDb => tagDb.Value == tag.Value).FirstOrDefault();
-                eventTags.Add(new EventTag() {EventId = id, TagId = tagDb.Id});
+                var response = new EventResponse() {
+                    Id = id,
+                    Title = request.Title,
+                    Description = request.Description,
+                    Location = request.Location,
+                    StartDate = request.StartDate,
+                    EndDate = request.EndDate,
+                    Image = ByteString.Empty,
+
+                };
+
+                foreach (Tag tag in request.Tags)
+                {
+                    response.Tags.Add(tag);
+                    var tagDb = _eventDbContext.Tags.Where(tagDb => tagDb.Value == tag.Value).FirstOrDefault();
+                    eventTags.Add(new EventTag() { EventId = id, TagId = tagDb.Id });
+                }
+
+                var eventDb = new EventDb() {
+                    Id = id,
+                    Title = request.Title,
+                    Description = request.Description,
+                    Location = request.Location,
+                    StartDate = request.StartDate.ToDateTime(),
+                    EndDate = request.EndDate.ToDateTime(),
+                    EventTags = eventTags
+                };
+                _eventDbContext.Events.Add(eventDb);
+                _eventDbContext.SaveChanges();
+
+                request.Id = id;
+                request.Image = ByteString.Empty;
+              
+                return await Task.FromResult(response);
             }
-
-            var eventDb = new EventDb() {
-                Id = id,
-                Title = eventObject.Title,
-                Description = eventObject.Description,
-                Location = eventObject.Location,
-                StartDate = eventObject.StartDate.ToDateTime(),
-                EndDate = eventObject.EndDate.ToDateTime(),
-                EventTags = eventTags
-            };
-            _eventDbContext.Events.Add(eventDb);
-            _eventDbContext.SaveChanges();
-
-            eventObject.Id = id;
-            eventObject.Image = ByteString.Empty;
-            return Task.FromResult(eventObject);
+            return await Task.FromResult(new EventResponse());
         }
 
         [AllowAnonymous]

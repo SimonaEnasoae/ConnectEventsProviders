@@ -16,6 +16,7 @@ import { RequestModel } from "../../../models/RequestModel";
 
 const Requests: FC = () => {
   const user = useSelector((state: RootState) => state.user.user);
+  const token = useSelector((state: RootState) => state.auth.token);
 
   const [pageData, setPageData] = useState({
     rowData: [],
@@ -48,6 +49,7 @@ const Requests: FC = () => {
     const request = {
       Id: requestId,
       Status: 2,
+      token: token,
     };
     console.log(request);
     declineRequest(request).then((response) => {
@@ -60,6 +62,7 @@ const Requests: FC = () => {
     const request = {
       Id: requestId,
       Status: 1,
+      token: token,
     };
     console.log(request);
     declineRequest(request).then((response) => {

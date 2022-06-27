@@ -38,10 +38,10 @@ const Auth: FC = () => {
     })
       .then((r) => r.json())
       .then((res) => {
-        console.log(res);
+        console.log("resp auth" + res.token);
         data.Type = res.type;
         data.Id = res.userId;
-        dispatch(saveToken("token"));
+        dispatch(saveToken(res.token));
         dispatch(setUser(data));
         dispatch(setAuthState(true));
       })

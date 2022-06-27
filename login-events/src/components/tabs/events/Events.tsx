@@ -16,6 +16,7 @@ import { RequestModel } from "../../../models/RequestModel";
 
 const Events: FC = () => {
   const user = useSelector((state: RootState) => state.user.user);
+  const token = useSelector((state: RootState) => state.auth.token);
 
   const [pageData, setPageData] = useState({
     rowData: [],
@@ -52,6 +53,7 @@ const Events: FC = () => {
       senderId: providerId,
       receiverId: currentOrganiserId,
       eventId: currentEventId,
+      token: token,
     };
     console.log(request);
     createRequest(request).then((response) => {

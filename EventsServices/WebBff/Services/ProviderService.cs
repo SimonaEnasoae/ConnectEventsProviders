@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using WebBff.Controllers.Responses;
 using WebBff.Controllers.Responses.Providers;
@@ -29,12 +30,13 @@ namespace WebBff.Services
 
         async public Task<ProviderModel> UpdateProvider(ProviderModel provider)
         {
-            var request = new ProviderResponse() {
+            var request = new UpdateProviderRequest() {
                 Id = provider.Id,
                 Title = provider.Title,
                 Description = provider.Description,
                 Location = provider.Location,
                 Tag = provider.Tag,
+                Token = provider.Token
             };
            
             var eventObj = await _providerClient.UpdateProviderAsync(request);

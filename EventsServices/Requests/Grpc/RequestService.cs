@@ -1,4 +1,5 @@
 ﻿using Grpc.Core;
+using GrpcAuth;
 using GrpcRequest;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
@@ -13,36 +14,69 @@ namespace Requests.Grpc
     public class RequestService : Request.RequestBase
     {
         private readonly RequestsDbContext requestsDbContext;
+        private readonly Auth.AuthClient _authClient;
 
-        public RequestService(RequestsDbContext context)
+
+        public RequestService(RequestsDbContext context, Auth.AuthClient authClient)
         {
+            _authClient = authClient;
             requestsDbContext = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         [AllowAnonymous]
-        public override async Task<RequestEventResponse> CreateRequestEvent(RequestEventResponse request, ServerCallContext context)
+        public override async Task<RequestEventResponse> CreateRequestEvent(RequestEventReq request, ServerCallContext context)
         {
             var id = Guid.NewGuid().ToString();
             request.Id = id;
-            await requestsDbContext.RequestEvents.AddAsync(new RequestEvent(request));
-            requestsDbContext.SaveChanges();
-           
-            return request;
+
+            var checkActionResponse = await _authClient.CheckActionAsync(new CheckActionRequest() {
+                Id = "id",
+                Token = request.Token
+            });
+
+            if (checkActionResponse.Status)
+            {
+                await requestsDbContext.RequestEvents.AddAsync(new RequestEvent(request));
+                requestsDbContext.SaveChanges();
+
+                var response = new RequestEventResponse() {
+                    Id = id,
+                    Receiverid = request.Receiverid,
+                    Senderid = request.Senderid,
+                    Eventid = request.Eventid,
+                    Status = (RequestEventResponse.Types.Status)request.Status,
+                };
+                return response;
+            }
+
+            return new RequestEventResponse();
+
         }
 
         [AllowAnonymous]
         public override async Task<RequestEventResponse> UpdateRequestEvent(UpdateRequestEventRequest request, ServerCallContext context)
         {
-            var req = await requestsDbContext.RequestEvents.Where(req => request.Id.Equals(req.Id)).FirstOrDefaultAsync();
-            req.Status = (Model.Status)request.Status;
-            requestsDbContext.SaveChanges();
+            var checkActionResponse = await _authClient.CheckActionAsync(new CheckActionRequest() {
+                Id = "id",
+                Token = request.Token
+            });
 
-            return new RequestEventResponse() {
-                Id = request.Id,
-                Senderid=req.SenderId,
-                Receiverid=req.SenderId,
-                Eventid=req.EventId,
-                Status= (RequestEventResponse.Types.Status)req.Status};
+            if (checkActionResponse.Status)
+            {
+
+                var req = await requestsDbContext.RequestEvents.Where(req => request.Id.Equals(req.Id)).FirstOrDefaultAsync();
+                req.Status = (Model.Status)request.Status;
+                requestsDbContext.SaveChanges();
+
+                return new RequestEventResponse() {
+                    Id = request.Id,
+                    Senderid=req.SenderId,
+                    Receiverid=req.SenderId,
+                    Eventid=req.EventId,
+                    Status= (RequestEventResponse.Types.Status)req.Status};
+            }
+
+            return new RequestEventResponse();
         }
 
         [AllowAnonymous]

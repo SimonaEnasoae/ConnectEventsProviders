@@ -23,7 +23,7 @@ namespace Requests.Model
 
         public RequestEvent() { }
 
-        public RequestEvent(RequestEventResponse request)
+        public RequestEvent(RequestEventReq request)
         {
             Id = request.Id;
             ReceiverId = request.Receiverid;

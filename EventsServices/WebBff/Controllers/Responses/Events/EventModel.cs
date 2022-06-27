@@ -21,6 +21,8 @@ namespace WebBff.Controllers.Responses.Events
         public IEnumerable<string>  Tags { get; init; }
 
         public Byte[] Image { get; set; }
+        public string Token { get; set; }
+
 
         public EventModel(EventResponse eventObj)
         {

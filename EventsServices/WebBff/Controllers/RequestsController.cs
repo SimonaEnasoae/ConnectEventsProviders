@@ -63,7 +63,7 @@ namespace WebBff.Controllers
         [HttpPost]
         public async Task<CreateRequestResponse> PostRequestStatusAsync([FromBody] UpdateRequest request)
         {
-            var response = await  _requestService.UpdateStatus(request.Id, request.Status);
+            var response = await  _requestService.UpdateStatus(request.Id, request.Status, request.Token);
             return new CreateRequestResponse() { success = true };
         }
     }

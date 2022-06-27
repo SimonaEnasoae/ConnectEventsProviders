@@ -37,6 +37,11 @@
   </ItemGroup>
 
 	<ItemGroup>
+		<Protobuf Include="Proto\auth.proto" GrpcServices="Client" />
+
+	</ItemGroup>
+	
+	<ItemGroup>
 		<Protobuf Include="Proto\event.proto" GrpcServices="Server" Generator="MSBuild:Compile" />
 		<Content Include="@(Protobuf)" />
 		<None Remove="@(Protobuf)" />

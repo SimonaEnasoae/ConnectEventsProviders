@@ -7,6 +7,7 @@ package AuthApi;
 service Auth {
 	rpc Login (LoginRequest) returns (LoginResponse) {}
 	rpc Logout (LogoutRequest) returns (LogoutResponse) {}
+	rpc CheckAction(CheckActionRequest) returns (CheckActionResponse){}
 }
 
 message LoginRequest {
@@ -28,5 +29,14 @@ message LogoutRequest {
 }
 
 message LogoutResponse {
+	bool status = 1;
+}
+
+message CheckActionRequest {
+	string id = 1;
+	string token = 2;
+}
+
+message CheckActionResponse {
 	bool status = 1;
 }

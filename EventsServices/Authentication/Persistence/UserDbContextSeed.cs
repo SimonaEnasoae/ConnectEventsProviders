@@ -1,4 +1,5 @@
-﻿using Authentication.Models;
+﻿using Authentication.Model;
+using Authentication.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using System;
@@ -20,12 +21,10 @@ namespace Authentication.Persistence
 
             try
             {
-
                 if (!context.UserAuths.Any())
                 {
                     context.UserAuths.AddRange(GetDefaultUser());
                 }
-
                 await context.SaveChangesAsync();
             }
             catch (Exception ex)

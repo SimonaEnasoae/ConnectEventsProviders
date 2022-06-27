@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf;
 using Grpc.Core;
+using GrpcAuth;
 using GrpcProvider;
 using Microsoft.AspNetCore.Authorization;
 using Providers.Models;
@@ -15,9 +16,11 @@ namespace Providers.Grpc
     public class ProviderService : Provider.ProviderBase
     {
         private readonly ProviderDbContext _providerDbContext;
+        private readonly Auth.AuthClient _authClient;
 
-        public ProviderService(ProviderDbContext context)
+        public ProviderService(ProviderDbContext context, Auth.AuthClient authClient)
         {
+            _authClient = authClient;
             _providerDbContext = context ?? throw new ArgumentNullException(nameof(context));
         }
 
@@ -41,34 +44,51 @@ namespace Providers.Grpc
         }
 
         [AllowAnonymous]
-        public override Task<ProviderResponse> UpdateProvider(ProviderResponse provider, ServerCallContext context)
+        async public override Task<ProviderResponse> UpdateProvider(UpdateProviderRequest request, ServerCallContext context)
         {
-            var tag = _providerDbContext.Tags.FirstOrDefault(tag => tag.Value == provider.Tag);
-            var id = Guid.NewGuid().ToString();
+            var checkActionResponse = await _authClient.CheckActionAsync(new CheckActionRequest() {
+                Id= "id",
+                Token = request.Token
+            });
 
-            var newProvider = new ProviderDb() {
-                Title = provider.Title,
-                Description = provider.Description,
-                Location = provider.Location,
-                Tag = tag
-            };
-            ProviderDb dbProviderDb = _providerDbContext.Providers.Where(providerDb => providerDb.Id == provider.Id).FirstOrDefault();
-            if (dbProviderDb == null)
+            if (checkActionResponse.Status)
             {
-                _providerDbContext.Add(newProvider);
-                provider.Id = id;
+                var tag = _providerDbContext.Tags.FirstOrDefault(tag => tag.Value == request.Tag);
+                var id = Guid.NewGuid().ToString();
 
-            }
-            else
-            {
-                newProvider.Id = dbProviderDb.Id;
-                _providerDbContext.ChangeTracker.Clear();
-                _providerDbContext.Update(newProvider);
-            }
-            _providerDbContext.SaveChanges();
+                var newProvider = new ProviderDb() {
+                    Title = request.Title,
+                    Description = request.Description,
+                    Location = request.Location,
+                    Tag = tag
+                };
+                ProviderDb dbProviderDb = _providerDbContext.Providers.Where(providerDb => providerDb.Id == request.Id).FirstOrDefault();
+                if (dbProviderDb == null)
+                {
+                    _providerDbContext.Add(newProvider);
+                    request.Id = id;
 
-            provider.Image = ByteString.Empty;
-            return Task.FromResult(provider);
+                }
+                else
+                {
+                    newProvider.Id = dbProviderDb.Id;
+                    _providerDbContext.ChangeTracker.Clear();
+                    _providerDbContext.Update(newProvider);
+                }
+                _providerDbContext.SaveChanges();
+
+                var response = new ProviderResponse();
+                response.Id = newProvider.Id;
+                response.Title = newProvider.Title;
+                response.Description = request.Description;
+                response.Location = request.Location;
+                response.Tag = request.Tag;
+                response.Image = ByteString.Empty;
+
+                return await Task.FromResult(response);
+            }
+
+            return await Task.FromResult(new ProviderResponse());
         }
 
         [AllowAnonymous]

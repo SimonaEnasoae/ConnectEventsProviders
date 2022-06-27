@@ -25,6 +25,7 @@ namespace WebBff.Model
             SenderId = request.SenderId;
             ReceiverId = request.ReceiverId;
             EventId = request.EventId;
+            Token = request.Token;
         }
 
         public string Id { get; set; }
@@ -32,5 +33,7 @@ namespace WebBff.Model
         public string ReceiverId { get; set; }
         public string EventId { get; set; }
         public string Status { get; set; }
+        public string Token { get; set; }
+
     }
 }

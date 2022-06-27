@@ -1,4 +1,5 @@
-﻿using Authentication.Models;
+﻿using Authentication.Model;
+using Authentication.Models;
 using Authentication.Persistence;
 using Authentication.Persistence.EntityConfigurations;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -10,6 +11,8 @@ namespace Authentication.Persistence
     public class UserDbContext : DbContext
     {
         public DbSet<UserAuth> UserAuths { get; set; }
+        public DbSet<Connection> Connections { get; set; }
+
 
         public UserDbContext(DbContextOptions<UserDbContext> options)
             : base(options)

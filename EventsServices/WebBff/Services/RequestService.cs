@@ -23,13 +23,14 @@ namespace WebBff.Services
         {
             //_logger.LogDebug("grpc client created, request = {@requestData}", requestData);
 
-            var requestResponse = new RequestEventResponse
+            var requestResponse = new RequestEventReq()
             {
                 Id = "",
                 Senderid = requestData.SenderId,
                 Receiverid = requestData.ReceiverId,
                 Eventid = requestData.EventId,
-                Status = RequestEventResponse.Types.Status.Pending
+                Status = RequestEventReq.Types.Status.Pending,
+                Token = requestData.Token
             };
             var response = await _requestClient.CreateRequestEventAsync(requestResponse);
             //_logger.LogDebug("grpc client created, response = {@response}", response);
@@ -49,12 +50,13 @@ namespace WebBff.Services
 
         }
 
-        public async Task<RequestData> UpdateStatus(string id, int status)
+        public async Task<RequestData> UpdateStatus(string id, int status, string token)
         {
             var request = new UpdateRequestEventRequest()
             {
                 Id = id,
-                Status = (UpdateRequestEventRequest.Types.Status)status
+                Status = (UpdateRequestEventRequest.Types.Status)status,
+                Token = token
             };
             var response = await _requestClient.UpdateRequestEventAsync(request);
             return new RequestData(response);

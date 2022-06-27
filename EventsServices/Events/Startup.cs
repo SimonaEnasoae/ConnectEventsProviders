@@ -1,5 +1,6 @@
 using Events.Grpc;
 using Events.Persistence;
+using GrpcAuth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -52,6 +53,14 @@ namespace Events
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Events", Version = "v1" });
+            });
+
+            services.AddGrpcClient<Auth.AuthClient>((services, options) =>
+            {
+                //var basketApi = services.GetRequiredService<IOptions<UrlConfig>>().Value.GrpcBasket;
+                //options.Address = new Uri("http://192.168.0.87:49154");
+                options.Address = new Uri("http://192.168.0.87:49153");
+                //options.Address = new Uri("http://localhost:5000");
             });
         }
 

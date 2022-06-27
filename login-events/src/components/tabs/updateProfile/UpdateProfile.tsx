@@ -34,10 +34,11 @@ const UpdateProfile = () => {
   const [imageSrc, setImageSrc] = useState(emptyProvider.image);
   const user = useSelector((state: RootState) => state.user.user);
 
+  const token = useSelector((state: RootState) => state.auth.token);
+
   useEffect(() => {
     const fetchProvider = async () => {
       const pr = await getProvider(user?.Id);
-      console.log(pr);
       setProvider(pr);
       setImageSrc(`data:image/png;base64,${pr.image}`);
       setiIsLoading(false);
@@ -52,7 +53,6 @@ const UpdateProfile = () => {
   };
 
   const uploadFile = async (eventId) => {
-    console.log(file);
     const formData = new FormData();
     formData.append("formFile", file);
     formData.append("fileName", provider.title);
@@ -63,8 +63,9 @@ const UpdateProfile = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(provider);
-    updateProfile(provider).then((eventObject) => {
+    const request = { ...provider, token: token };
+    console.log(request);
+    updateProfile(request).then((eventObject) => {
       if (file != "") {
         uploadFile(eventObject.id);
       } else {
@@ -86,7 +87,7 @@ const UpdateProfile = () => {
         <Loader />
       ) : (
         <>
-          {console.log("render", provider)}
+          {/* {console.log("render", provider)} */}
           <h1 className="titleEvent">Update Profile Provider</h1>
           <div className="form-container">
             <Form onSubmit={handleSubmit}>

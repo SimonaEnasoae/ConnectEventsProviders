@@ -37,4 +37,8 @@
 		<None Remove="@(Protobuf)" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<Protobuf Include="Proto\auth.proto" GrpcServices="Client" />
+	</ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
 ﻿using Authentication.Controllers.Responses;
+using Authentication.Model;
 using Authentication.Models;
 using Authentication.Persistence;
 using Microsoft.AspNetCore.Identity;
@@ -12,6 +13,7 @@ namespace Authentication.Services
     public class AuthService : IAuthService
     {
         private readonly UserDbContext _userDbContext;
+        private readonly Auth.AuthClient _authClient;
 
         public AuthService(UserDbContext context)
         {
@@ -21,13 +23,18 @@ namespace Authentication.Services
         public LoginResponse Login(UserAuth user)
         {
             LoginResponse loginRespone = new LoginResponse();
+            var token = Guid.NewGuid().ToString();
             UserAuth userDb = _userDbContext.UserAuths.Where(userDb =>
             (
                 userDb.Username == user.Username && userDb.Password == user.Password
             )).First();
+
             if (userDb!=null)
             {
-                loginRespone.Token = "token";
+                _userDbContext.Connections.Add(new Connection() { Id = Guid.NewGuid().ToString(), UserId = userDb.Id, Token = token });
+                _userDbContext.SaveChanges();
+
+                loginRespone.Token = token;
                 loginRespone.Type = userDb.Type.ToString();
                 loginRespone.UserId = userDb.Id;
                 loginRespone.Status = true;
@@ -36,6 +43,8 @@ namespace Authentication.Services
             {
                 loginRespone.Status = false;
             }
+
+
             return loginRespone;
         }
 

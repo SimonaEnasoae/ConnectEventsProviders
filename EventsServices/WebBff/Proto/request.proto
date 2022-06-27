@@ -5,7 +5,7 @@ option csharp_namespace = "GrpcRequest";
 package RequestApi;
 
 service Request {
-	rpc CreateRequestEvent(RequestEventResponse) returns (RequestEventResponse) {}
+	rpc CreateRequestEvent(RequestEventReq) returns (RequestEventResponse) {}
 	rpc UpdateRequestEvent(UpdateRequestEventRequest) returns (RequestEventResponse) {}
 	rpc GetRequestEventsByUserId (RequestEventsByUserId) returns (PaginatedRequestEventsResponse) {}
 }
@@ -22,11 +22,26 @@ message RequestEventResponse {
 	string receiverid = 3;
 	string eventid = 4;
 	enum Status {
-    PENDING = 0;
-    ACCEPTED = 1;
-    DECLINED = 2;
-  }
-  Status status = 5;
+		PENDING = 0;
+		ACCEPTED = 1;
+		DECLINED = 2;
+	}
+	Status status = 5;
+}
+
+message RequestEventReq {
+	string id = 1;
+	string senderid = 2;
+	string receiverid = 3;
+	string eventid = 4;
+	enum Status {
+		PENDING = 0;
+		ACCEPTED = 1;
+		DECLINED = 2;
+	}
+	Status status = 5;
+	string token = 6;
+
 }
 
 message PaginatedRequestEventsResponse {
@@ -39,9 +54,10 @@ message PaginatedRequestEventsResponse {
 message UpdateRequestEventRequest {
 	string id = 1;
 	enum Status {
-    PENDING = 0;
-    ACCEPTED = 1;
-    DECLINED = 2;
-  }
-  Status status = 2;
+		PENDING = 0;
+		ACCEPTED = 1;
+		DECLINED = 2;
+	}
+	Status status = 2;
+	string token = 3;
 }
